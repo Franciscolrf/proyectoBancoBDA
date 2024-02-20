@@ -9,7 +9,7 @@ public class SinCuentaNuevaDTO {
     private int id_transaccion;
     private String estado;
     private int folio;
-    private int contrasenia;
+    private int contrasena;
 
     /**
      * Constructor por defecto.
@@ -59,8 +59,8 @@ public class SinCuentaNuevaDTO {
      *
      * @return La contraseña de la transacción sin cuenta asociada.
      */
-    public int getContrasenia() {
-        return contrasenia;
+    public int getContrasena() {
+        return contrasena;
     }
 
     /**
@@ -70,7 +70,7 @@ public class SinCuentaNuevaDTO {
      * establecer.
      */
     public void setContrasenia(int contrasenia) {
-        this.contrasenia = contrasenia;
+        this.contrasena = contrasenia;
     }
 
     /**
