@@ -100,4 +100,19 @@ public class Transferencia {
         return this.id_transaccion == other.id_transaccion;
     }
 
+    /**
+     * Devuelve una representación en forma de cadena de este objeto.
+     * 
+     * @return Una cadena que contiene la información de la transferencia.
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Transferencia{");
+        sb.append("id_transaccion=").append(id_transaccion);
+        sb.append(", cuenta_destino=").append(cuenta_destino);
+        sb.append('}');
+        return sb.toString();
+    }
+    
 }
