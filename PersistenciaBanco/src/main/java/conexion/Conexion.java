@@ -30,9 +30,9 @@ public class Conexion  implements IConexion{
 
     /**
      * Constructor que inicializa los campos de la clase.
-     * @param cadenaConexion
-     * @param usuario
-     * @param contrasena
+     * @param cadenaConexion La cadena de conexión a la base de datos.
+     * @param usuario El usuario de la base de datos.
+     * @param contrasena La contraseña del usuario de la base de datos.
      */
     public Conexion (String cadenaConexion, String usuario, String contrasena) {
         this.cadenaConexion = cadenaConexion;
@@ -40,6 +40,11 @@ public class Conexion  implements IConexion{
         this.contrasena = contrasena;
     }
 
+    /**
+     * Método que establece la cadena de conexión a la base de datos.
+     * @return La cadena de conexión a la base de datos en forma Connection.
+     * @throws SQLException Si ocurre un error al establecer la conexión.
+     */
     @Override
     public Connection obtenerConexion() throws SQLException {
         Connection conexion = DriverManager.getConnection(cadenaConexion, usuario, contrasena);
