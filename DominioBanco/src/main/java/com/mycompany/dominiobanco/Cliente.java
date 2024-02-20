@@ -28,70 +28,72 @@ public class Cliente {
     }
 
     /**
-     * Constructor que inicializa todos los atributos de la clase.
-     * 
-     * @param nombres
-     * @param id
-     * @param contrasena
-     * @param nacimiento
-     * @param edad
-     * @param apellido_materno
-     * @param apellido_paterno
-     * @param usuario
+     * Constructor de la clase Cliente que inicializa todos los campos.
+     *
+     * @param id               El ID del cliente.
+     * @param contrasena       La contraseña del cliente.
+     * @param usuario          El nombre de usuario del cliente.
+     * @param nombres          Los nombres del cliente.
+     * @param apellido_paterno El apellido paterno del cliente.
+     * @param apellido_materno El apellido materno del cliente.
+     * @param nacimiento       La fecha de nacimiento del cliente.
+     * @param edad             La edad del cliente.
      */
-    public Cliente(String nombres, int id, String contrasena, String nacimiento, int edad, String apellido_materno,
-            String apellido_paterno, String usuario) {
-        this.nombres = nombres;
+    public Cliente(int id, String contrasena, String usuario, String nombres, String apellido_paterno,
+            String apellido_materno, String nacimiento, int edad) {
         this.id = id;
         this.contrasena = contrasena;
+        this.usuario = usuario;
+        this.nombres = nombres;
+        this.apellido_paterno = apellido_paterno;
+        this.apellido_materno = apellido_materno;
         this.nacimiento = nacimiento;
         this.edad = edad;
-        this.apellido_materno = apellido_materno;
-        this.apellido_paterno = apellido_paterno;
-        this.usuario = usuario;
+
     }
 
     /**
-     * Constructor que inicializa todos los atributos de la clase excepto el id y la
-     * edad.
-     * 
-     * @param nombres
-     * @param contrasena
-     * @param nacimiento
-     * @param apellido_materno
-     * @param apellido_paterno
-     * @param usuario
+     * Constructor de la clase Cliente que inicializa los campos básicos del
+     * cliente. No incluye ID ni edad.
+     *
+     * @param contrasena       La contraseña del cliente.
+     * @param nombres          Los nombres del cliente.
+     * @param apellido_paterno El apellido paterno del cliente.
+     * @param apellido_materno El apellido materno del cliente.
+     * @param nacimiento       La fecha de nacimiento del cliente.
      */
-    public Cliente(String nombres, String contrasena, String nacimiento, String apellido_materno,
-            String apellido_paterno, String usuario) {
-        this.nombres = nombres;
+    public Cliente(String contrasena, String nombres, String apellido_paterno, String apellido_materno,
+            String nacimiento) {
         this.contrasena = contrasena;
-        this.nacimiento = nacimiento;
-        this.apellido_materno = apellido_materno;
+        this.nombres = nombres;
         this.apellido_paterno = apellido_paterno;
-        this.usuario = usuario;
+        this.apellido_materno = apellido_materno;
+        this.nacimiento = nacimiento;
     }
 
     /**
-     * Constructor que inicializa todos los atributos de la clase excepto el id.
-     * 
-     * @param contrasena
-     * @param usuario
-     * @param nombres
-     * @param apellido_paterno
-     * @param apellido_materno
-     * @param nacimiento
-     * @param edad
+     * Constructor de la clase Cliente que inicializa todos los campos excepto
+     * el ID. No incluye ID.
+     *
+     * @param contrasena       La contraseña del cliente.
+     * @param usuario          El nombre de usuario del cliente.
+     * @param nombres          Los nombres del cliente.
+     * @param apellido_paterno El apellido paterno del cliente.
+     * @param apellido_materno El apellido materno del cliente.
+     * @param nacimiento       La fecha de nacimiento del cliente.
+     * @param edad             La edad del cliente.
      */
     public Cliente(String contrasena, String usuario, String nombres, String apellido_paterno, String apellido_materno,
-            String nacimiento, int edad) {
-        this.nombres = nombres;
+            String nacimiento, int edad) 
+            {
         this.contrasena = contrasena;
+        this.usuario = usuario;
+        this.nombres = nombres;
+        this.apellido_paterno = apellido_paterno;
+        this.apellido_materno = apellido_materno;
         this.nacimiento = nacimiento;
         this.edad = edad;
-        this.apellido_materno = apellido_materno;
-        this.apellido_paterno = apellido_paterno;
-        this.usuario = usuario;
+        
     }
 
     /**
@@ -252,6 +254,7 @@ public class Cliente {
 
     /**
      * Método que compara dos objetos de tipo Cliente.
+     * 
      * @param obj
      * @return Devuelve true si los objetos son iguales, false en caso contrario.
      */
@@ -267,15 +270,17 @@ public class Cliente {
             return true;
         }
         final Cliente other = (Cliente) obj;
-       return Objects.equals(this.id, other.id);
+        return Objects.equals(this.id, other.id);
     }
+
     /**
      * Método que devuelve una cadena que representa al objeto.
+     * 
      * @return Cadena que representa al objeto.
      */
     @Override
-    public String toString(){
-        StringBuilder sb= new StringBuilder();
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
         sb.append("Cliente{");
         sb.append("id=").append(id);
         sb.append(", contrasena=").append(contrasena);
