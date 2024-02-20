@@ -54,16 +54,18 @@ public class Cliente {
 
     /**
      * Constructor de la clase Cliente que inicializa los campos básicos del
-     * cliente. No incluye ID ni edad.
-     *
+     * cliente. No incluye edad.
+     * 
+     * @param id               El ID del cliente.
      * @param contrasena       La contraseña del cliente.
      * @param nombres          Los nombres del cliente.
      * @param apellido_paterno El apellido paterno del cliente.
      * @param apellido_materno El apellido materno del cliente.
      * @param nacimiento       La fecha de nacimiento del cliente.
      */
-    public Cliente(String contrasena, String nombres, String apellido_paterno, String apellido_materno,
+    public Cliente(int id, String contrasena, String nombres, String apellido_paterno, String apellido_materno,
             String nacimiento) {
+        this.id = id;
         this.contrasena = contrasena;
         this.nombres = nombres;
         this.apellido_paterno = apellido_paterno;
@@ -84,8 +86,7 @@ public class Cliente {
      * @param edad             La edad del cliente.
      */
     public Cliente(String contrasena, String usuario, String nombres, String apellido_paterno, String apellido_materno,
-            String nacimiento, int edad) 
-            {
+            String nacimiento, int edad) {
         this.contrasena = contrasena;
         this.usuario = usuario;
         this.nombres = nombres;
@@ -93,7 +94,7 @@ public class Cliente {
         this.apellido_materno = apellido_materno;
         this.nacimiento = nacimiento;
         this.edad = edad;
-        
+
     }
 
     /**

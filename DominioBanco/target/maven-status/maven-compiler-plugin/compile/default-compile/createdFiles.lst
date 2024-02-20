@@ -1,0 +1,6 @@
+com\mycompany\dominiobanco\Cuenta.class
+com\mycompany\dominiobanco\Transferencia.class
+com\mycompany\dominiobanco\Transaccion.class
+com\mycompany\dominiobanco\Cliente.class
+com\mycompany\dominiobanco\Domicilio.class
+com\mycompany\dominiobanco\SinCuenta.class
