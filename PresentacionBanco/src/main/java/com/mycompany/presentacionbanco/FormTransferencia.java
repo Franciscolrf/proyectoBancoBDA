@@ -4,19 +4,55 @@
  */
 package com.mycompany.presentacionbanco;
 
+import com.mycompany.dominiobanco.Cliente;
+import com.mycompany.dominiobanco.Cuenta;
+import com.mycompany.dominiobanco.Transaccion;
+import com.mycompany.dominiobanco.Transferencia;
+import conexion.IConexion;
+import dao.ICuentaDAO;
+import dao.ITransaccionDAO;
+import dao.ITransferenciaDAO;
+import dao.TransaccionDAO;
+import dao.TransferenciaDAO;
+import dto.TransaccionNuevaDTO;
+import dto.TransferenciaNuevaDTO;
+import excepciones.PersistenciaException;
+import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ID145
  */
 public class FormTransferencia extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormTransferencia
-     */
-    public FormTransferencia() {
-        initComponents();
-    }
+    private Cliente cliente;
+    private ICuentaDAO cuentaDAO;
+    private final IConexion conexion;
+    private Cuenta cuenta;
+    private ITransaccionDAO transaccionDAO;
+    private ITransferenciaDAO transferenciaDAO;
 
+    /**
+     * Creates new form Transferencia
+     */
+    public FormTransferencia(Cliente cliente, Cuenta cuenta, ICuentaDAO cuentaDAO, IConexion conexion) {
+        initComponents();
+        this.conexion = conexion;
+        this.cuentaDAO = cuentaDAO;
+        this.cliente = cliente;
+        this.cuenta = cuenta;
+        transaccionDAO = new TransaccionDAO(conexion);
+        transferenciaDAO = new TransferenciaDAO(conexion);
+        String saludo = txtSaludo.getText().replaceAll("Usuario", cliente.getNombres());
+        txtSaludo.setText(saludo);
+        txtIDeTarjeta.setText("Tarjeta " + cuenta.getNumero());
+
+        txtIDeTarjeta.setText("Tarjeta " + cuenta.getNumero() + " Saldo disp. $" + cuenta.getSaldo());
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,57 +62,312 @@ public class FormTransferencia extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        txtTitulo = new javax.swing.JLabel();
+        txtIDeTarjeta = new javax.swing.JLabel();
+        txtNumCuenDestino = new javax.swing.JLabel();
+        txtCantidad = new javax.swing.JLabel();
+        tfiNumCuenDestino = new javax.swing.JTextField();
+        tfiCantidad = new javax.swing.JTextField();
+        txtSaludo = new javax.swing.JLabel();
+        btnVolver = new javax.swing.JButton();
+        btnTransferirTarjetas = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 113, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 109, Short.MAX_VALUE)
+        );
+
+        txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtTitulo.setText("Transferencia");
+
+        txtIDeTarjeta.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtIDeTarjeta.setText("Tarjeta");
+
+        txtNumCuenDestino.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtNumCuenDestino.setText("Numero de cuenta destinataria:");
+
+        txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtCantidad.setText("Cantidad:");
+
+        tfiNumCuenDestino.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        tfiCantidad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txtSaludo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtSaludo.setText("¡Hola, Usuario!");
+
+        btnVolver.setText("Volver");
+
+        btnTransferirTarjetas.setText("Transferir");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNumCuenDestino)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtTitulo))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(27, 27, 27)
+                            .addComponent(txtIDeTarjeta))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(248, 248, 248)
+                            .addComponent(txtCantidad))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfiNumCuenDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfiCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(167, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtSaludo)
+                        .addGap(42, 42, 42))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnVolver)
+                .addGap(42, 42, 42)
+                .addComponent(btnTransferirTarjetas)
+                .addGap(67, 67, 67))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtTitulo)
+                            .addComponent(txtSaludo))))
+                .addGap(30, 30, 30)
+                .addComponent(txtIDeTarjeta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNumCuenDestino)
+                    .addComponent(tfiNumCuenDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCantidad)
+                    .addComponent(tfiCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVolver)
+                    .addComponent(btnTransferirTarjetas))
+                .addGap(26, 26, 26))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormTransferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormTransferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormTransferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormTransferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FormTransferencia().setVisible(true);
-            }
-        });
+    private boolean validarSaldo() {
+        float saldoDisponible = cuenta.getSaldo();
+        String saldoTransferir = tfiCantidad.getText();
+        return saldoDisponible > Float.valueOf(saldoTransferir) && Float.valueOf(saldoTransferir) > 0;
     }
 
+    private Cuenta existenciaCuenta(int cuentaNum) {
+        Cuenta cuenta = null;
+        try {
+            cuenta = this.cuentaDAO.consultarCuenta(cuentaNum);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(PantallaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cuenta;
+    }
+    private void btnTransferirTarjetasActionPerformed(java.awt.event.ActionEvent evt) {                                                      
+
+        if (tfiNumCuenDestino.getText().isEmpty() || tfiCantidad.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Todos los campos tienen que estar llenos.");
+
+            return;
+        }
+        //Creamos la transaccion
+        if (validarSaldo() == false) {
+            JOptionPane.showMessageDialog(this, "No dispone del saldo suficiente");
+            return;
+        }
+        String cuentaNumDestino = tfiNumCuenDestino.getText();
+        Cuenta cuentaDestino = existenciaCuenta(Integer.valueOf(cuentaNumDestino));
+        if (cuentaDestino == null) {
+            JOptionPane.showMessageDialog(this, "Cuenta no encontrada");
+            return;
+        }
+        if (!cuentaDestino.isEsta_activo()) {
+            JOptionPane.showMessageDialog(this, "La cuenta esta inactiva");
+            return;
+        }
+
+        if (cuentaDestino.getId_cuenta() == cuenta.getId_cuenta()) {
+            JOptionPane.showMessageDialog(this, "No se puede transferir a la misma cuenta");
+            return;
+
+        }
+        TransaccionNuevaDTO trasanccionNueva = new TransaccionNuevaDTO();
+        trasanccionNueva.setMonto(Float.parseFloat(tfiCantidad.getText()));
+        trasanccionNueva.setTipo("transferencia");
+        trasanccionNueva.setId_cuenta(cuenta.getId_cuenta());
+        Transaccion transaccionNueva = crearTransaccion(trasanccionNueva);
+
+        //Creamos la transferencia
+        TransferenciaNuevaDTO transferenciaNueva = new TransferenciaNuevaDTO();
+
+        //int cuentaDestino = Integer.valueOf(tfiNumCuenDestino.getText());
+        transferenciaNueva.setCuenta_destino(cuentaDestino.getId_cuenta());
+
+        transferenciaNueva.setId_transaccion(transaccionNueva.getId());
+
+        Transferencia trasferenciaNueva = crearTransferencia(transferenciaNueva);
+        Cuenta cuentaTransmisor = obtenerCuenta(cuenta.getId_cliente());
+
+        try {
+            cuentaDAO.actualizarMontoTransaccion(this.cuenta, Integer.parseInt(tfiNumCuenDestino.getText()), Float.parseFloat(tfiCantidad.getText()));
+        } catch (PersistenciaException pe) {
+            System.out.println(pe);
+        }
+        ConfirmacionTransferencia ct = new ConfirmacionTransferencia(cliente, this.cuenta, transaccionNueva, tfiNumCuenDestino.getText(), cuentaDAO, conexion);
+        ct.setVisible(true);
+        this.dispose();
+    }                                                     
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        Tarjeta tarjeta = new Tarjeta(cliente, this.cuenta, conexion, cuentaDAO);
+        tarjeta.setVisible(true);
+        this.dispose();
+    }                                         
+
+    private void tfiNumCuenDestinoKeyTyped(java.awt.event.KeyEvent evt) {                                           
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;
+
+        if (!numero) {
+            evt.consume();
+        }
+    }                                          
+
+    private void tfiCantidadKeyTyped(java.awt.event.KeyEvent evt) {                                     
+        char c = evt.getKeyChar();
+        boolean esDigito = (c >= '0' && c <= '9');
+        boolean esPunto = (c == '.' && !tfiCantidad.getText().contains("."));
+        boolean esBorrar = (c == KeyEvent.VK_BACK_SPACE);
+        boolean esDatosValidos = esDigito || esPunto || esBorrar;
+
+        if (tfiCantidad.getText().contains(".")) {
+            int puntoIndex = tfiCantidad.getText().indexOf(".");
+            int dotPosition = tfiCantidad.getText().length() - puntoIndex - 1;
+            if (dotPosition >= 2 && esDigito && tfiCantidad.getSelectionStart() > puntoIndex) {
+                evt.consume();
+                return;
+            }
+        }
+
+        if (!esDatosValidos) {
+            evt.consume();
+        }
+    }                                    
+
+    private void tfiCantidadActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+    }                                           
+    /**
+     * Crea una nueva transacción utilizando la información proporcionada en un
+     * objeto TransaccionNuevaDTO.
+     *
+     * @param trasanccionNueva El objeto TransaccionNuevaDTO que contiene la
+     * información de la nueva transacción.
+     * @return El objeto Transaccion creado y persistido en la base de datos, o
+     * null si ocurrió una excepción durante la persistencia.
+     */
+    private Transaccion crearTransaccion(TransaccionNuevaDTO trasanccionNueva) {
+        Transaccion transaccion = null;
+        try {
+
+            transaccion = this.transaccionDAO.agregar(trasanccionNueva);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(FormTransferencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return transaccion;
+    }
+
+    /**
+     * Crea una nueva transferencia utilizando la información proporcionada en
+     * un objeto TransferenciaNuevaDTO.
+     *
+     * @param trasferenciaNueva El objeto TransferenciaNuevaDTO que contiene la
+     * información de la nueva transferencia.
+     * @return El objeto Transferencia creado y persistido en la base de datos,
+     * o null si ocurrió una excepción durante la persistencia.
+     */
+    private Transferencia crearTransferencia(TransferenciaNuevaDTO trasferenciaNueva) {
+        Transferencia transferencia = null;
+        try {
+            transferencia = this.transferenciaDAO.agregar(trasferenciaNueva);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(FormTransferencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return transferencia;
+    }
+
+    /**
+     * Obtiene una instancia de Cuenta a partir del ID proporcionado.
+     *
+     * @param id El ID de la cuenta que se desea obtener.
+     * @return La Cuenta correspondiente al ID proporcionado, o null si no se
+     * encuentra.
+     */
+    private Cuenta obtenerCuenta(int id) {
+        Cuenta cuenta = null;
+        try {
+            cuenta = this.cuentaDAO.consultarCuentaId(id);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(PantallaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cuenta;
+    }
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTransferirTarjetas;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField tfiCantidad;
+    private javax.swing.JTextField tfiNumCuenDestino;
+    private javax.swing.JLabel txtCantidad;
+    private javax.swing.JLabel txtIDeTarjeta;
+    private javax.swing.JLabel txtNumCuenDestino;
+    private javax.swing.JLabel txtSaludo;
+    private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables
 }
