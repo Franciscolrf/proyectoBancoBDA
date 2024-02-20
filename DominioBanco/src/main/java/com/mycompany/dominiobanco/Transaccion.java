@@ -187,5 +187,7 @@ public class Transaccion {
         }
         final Transaccion other = (Transaccion) obj;
         return this.id == other.id;
+    }
+    
 
 }
