@@ -167,6 +167,57 @@ public class Cuenta {
     public void setEsta_activo(boolean esta_activo) {
         this.esta_activo = esta_activo;
     }
-    
+
+    /**
+     * Devuelve una representación en forma de cadena de este objeto.
+     *
+     * @return Una cadena que contiene la información de la cuenta.
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Cuenta{");
+        sb.append("id_cuenta=").append(id_cuenta);
+        sb.append(", fecha_apertura=").append(fecha_apertura);
+        sb.append(", numero=").append(numero);
+        sb.append(", saldo=").append(saldo);
+        sb.append(", id_cliente=").append(id_cliente);
+        sb.append(", esta_activo=").append(esta_activo);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    /**
+     * Devuelve un valor hash para este objeto.
+     *
+     * @return El valor hash calculado.
+     */
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + this.id_cuenta;
+        return hash;
+    }
+
+    /**
+     * Compara este objeto con otro objeto para determinar la igualdad.
+     *
+     * @param obj El objeto a comparar con este objeto.
+     * @return true si los objetos son iguales, false de lo contrario.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cuenta other = (Cuenta) obj;
+        return this.id_cuenta == other.id_cuenta;
+    }
 
 }
