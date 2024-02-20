@@ -20,7 +20,7 @@ public class main {
     static final Logger logger = Logger.getLogger(main.class.getName());
 
     public static void main(String[] args) {
-        String candenaConexion = "jdbc:mysql://localhost/banco";
+        String candenaConexion = "jdbc:mysql://localhost:3306/banco";
         String usuario = "root";
         String password = "fransql";
         IConexion conexion = new Conexion(candenaConexion, usuario, password);
