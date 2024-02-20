@@ -4,17 +4,53 @@
  */
 package com.mycompany.presentacionbanco;
 
+import com.mycompany.dominiobanco.Cliente;
+import com.mycompany.dominiobanco.Cuenta;
+import com.mycompany.dominiobanco.SinCuenta;
+import com.mycompany.dominiobanco.Transaccion;
+import conexion.IConexion;
+import dao.ICuentaDAO;
+import dao.ISinCuentaDAO;
+import dao.ITransaccionDAO;
+import dao.SinCuentaDAO;
+import dao.TransaccionDAO;
+import dto.SinCuentaNuevaDTO;
+import dto.TransaccionNuevaDTO;
+import excepciones.PersistenciaException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ID145
  */
 public class MontoRetiroSinTarjeta extends javax.swing.JFrame {
 
+    private Cliente cliente;
+    private Cuenta cuenta;
+    private final IConexion conexion;
+    private ICuentaDAO cuentaDAO;
+    private ITransaccionDAO transaccionDAO;
+    private ISinCuentaDAO sinCuentaDAO;
+
     /**
      * Creates new form MontoRetiroSinTarjeta
      */
-    public MontoRetiroSinTarjeta() {
+    public MontoRetiroSinTarjeta(Cliente cliente, Cuenta cuenta, IConexion conexion, ICuentaDAO cuentaDAO) {
+        this.cliente = cliente;
+        this.cuenta = cuenta;
+        this.conexion = conexion;
+        this.cuentaDAO = cuentaDAO;
+        transaccionDAO = new TransaccionDAO(conexion);
+        sinCuentaDAO = new SinCuentaDAO(conexion);
+
         initComponents();
+
+        String saludo = txtSaludo.getText().replaceAll("Usuario", this.cliente.getNombres());
+        txtSaludo.setText(saludo);
+
+        txtIDeTarjeta.setText("Tarjeta " + cuenta.getNumero());
     }
 
     /**
@@ -26,57 +62,230 @@ public class MontoRetiroSinTarjeta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        txtTitulo = new javax.swing.JLabel();
+        txtSaludo = new javax.swing.JLabel();
+        txtIDeTarjeta = new javax.swing.JLabel();
+        txtIngresaLaCantidad = new javax.swing.JLabel();
+        txfMonto = new javax.swing.JTextField();
+        txtIngresaLaCantidad1 = new javax.swing.JLabel();
+        btnSalir = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtTitulo.setText("Monto del retiro sin tarjeta");
+
+        txtSaludo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtSaludo.setText("¡Hola, Usuario!");
+
+        txtIDeTarjeta.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        txtIDeTarjeta.setText("Tarjeta");
+
+        txtIngresaLaCantidad.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        txtIngresaLaCantidad.setText("Ingresa la cantidad que quieres retirar");
+
+        txfMonto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txtIngresaLaCantidad1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtIngresaLaCantidad1.setText("Se le generara una contraseña y folio para realizar el retiro");
+
+        btnSalir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
+        btnAceptar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtIDeTarjeta)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(txtTitulo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtSaludo)
+                        .addGap(62, 62, 62))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(256, 256, 256)
+                        .addComponent(txtIngresaLaCantidad))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(339, 339, 339)
+                        .addComponent(txfMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(txtIngresaLaCantidad1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(btnSalir)
+                        .addGap(79, 79, 79)
+                        .addComponent(btnAceptar)))
+                .addGap(0, 210, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(txtTitulo))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(txtSaludo)))
+                .addGap(52, 52, 52)
+                .addComponent(txtIDeTarjeta)
+                .addGap(54, 54, 54)
+                .addComponent(txtIngresaLaCantidad)
+                .addGap(18, 18, 18)
+                .addComponent(txfMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(txtIngresaLaCantidad1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalir)
+                    .addComponent(btnAceptar))
+                .addGap(36, 36, 36))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MontoRetiroSinTarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MontoRetiroSinTarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MontoRetiroSinTarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MontoRetiroSinTarjeta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private boolean validarSaldo() {
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MontoRetiroSinTarjeta().setVisible(true);
-            }
-        });
+        try {
+            float saldoDisponible = cuentaDAO.consultarCuenta(this.cuenta.getId_cuenta()).getSaldo();
+            String saldoTransferir = txfMonto.getText();
+            return saldoDisponible >= Integer.valueOf(saldoTransferir) && Integer.valueOf(saldoTransferir) > 0;
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(MontoRetiroSinTarjeta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        if (validarSaldo() == false) {
+            return;
+        }
+        //Creamos la transaccion
+
+        TransaccionNuevaDTO trasanccionNueva = new TransaccionNuevaDTO();
+        trasanccionNueva.setMonto(Float.parseFloat(txfMonto.getText()));
+        trasanccionNueva.setTipo("sin cuenta");
+        trasanccionNueva.setId_cuenta(cliente.getId());
+        Transaccion transaccionNueva = crearTransaccion(trasanccionNueva);
+        //Creamos el Sin Cuenta
+        SinCuentaNuevaDTO sinCuentaNuevaDTO = new SinCuentaNuevaDTO();
+        sinCuentaNuevaDTO.setId_transaccion(transaccionNueva.getId());
+        sinCuentaNuevaDTO.setEstado("pendiente");
+
+        SinCuenta sinCuentaNueva = crearSinCuenta(sinCuentaNuevaDTO);
+
+        //if tiene dinero
+        JOptionPane.showMessageDialog(this, "Retiro sin tarjeta Generado\nFolio: " + sinCuentaNueva.getFolio() + "\nContraseña: " + sinCuentaNueva.getContrasena() + "");
+        Tarjeta tarjeta = new Tarjeta(cliente, cuenta, conexion, cuentaDAO);
+        tarjeta.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        Tarjeta tarjeta = new Tarjeta(cliente, cuenta, conexion, cuentaDAO);
+        tarjeta.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    /**
+     * Crea una nueva transacción utilizando la información proporcionada en un
+     * objeto TransaccionNuevaDTO. 
+     *
+     * @param trasanccionNueva El objeto TransaccionNuevaDTO que contiene la
+     * información de la nueva transacción.
+     * @return El objeto Transaccion creado y persistido en la base de datos.
+     */
+    private Transaccion crearTransaccion(TransaccionNuevaDTO trasanccionNueva) {
+        Transaccion transaccion = null;
+        try {
+            transaccion = this.transaccionDAO.agregar(trasanccionNueva);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(MontoRetiroSinTarjeta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return transaccion;
+    }
+   
+    /**
+     * Crea una nueva cuenta sin asociar a un cliente utilizando la información
+     * proporcionada en un objeto SinCuentaNuevaDTO. 
+     *
+     * @param sinCuentaNueva SinCuentaNuevaDTO que contiene la
+     * información de la nueva cuenta.
+     * @return El objeto SinCuenta creado y persistido en la base de datos.
+     */
+    private SinCuenta crearSinCuenta(SinCuentaNuevaDTO sinCuentaNueva) {
+        SinCuenta sinCuenta = null;
+        try {
+            sinCuenta = this.sinCuentaDAO.agregar(sinCuentaNueva);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(FormTransferencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sinCuenta;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField txfMonto;
+    private javax.swing.JLabel txtIDeTarjeta;
+    private javax.swing.JLabel txtIngresaLaCantidad;
+    private javax.swing.JLabel txtIngresaLaCantidad1;
+    private javax.swing.JLabel txtSaludo;
+    private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables
 }
