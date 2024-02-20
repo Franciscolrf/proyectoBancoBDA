@@ -123,7 +123,7 @@ public class CancelarCuenta extends javax.swing.JFrame {
         );
 
         btnCancelar.setBackground(new java.awt.Color(153, 153, 0));
-        btnCancelar.setText("Confirmar");
+        btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -131,7 +131,7 @@ public class CancelarCuenta extends javax.swing.JFrame {
         });
 
         btnConfirmar.setBackground(new java.awt.Color(153, 153, 0));
-        btnConfirmar.setText("Cancelar");
+        btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarActionPerformed(evt);
@@ -179,7 +179,7 @@ public class CancelarCuenta extends javax.swing.JFrame {
                     .addContainerGap(533, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(401, Short.MAX_VALUE)
+                    .addContainerGap(393, Short.MAX_VALUE)
                     .addComponent(btnConfirmar)
                     .addGap(144, 144, 144)))
         );
