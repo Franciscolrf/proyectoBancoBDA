@@ -224,4 +224,24 @@ public class Domicilio {
         
         return this.id_domicilio == other.id_domicilio;
     }
+    
+    /**
+     * Devuelve una representación en forma de cadena de este objeto.
+     * 
+     * @return Una cadena que contiene la información del domicilio.
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Domicilio{");
+        sb.append("id_domicilio=").append(id_domicilio);
+        sb.append(", calle=").append(calle);
+        sb.append(", numero_exterior=").append(numero_exterior);
+        sb.append(", numero_interior=").append(numero_interior);
+        sb.append(", codigo_postal=").append(codigo_postal);
+        sb.append(", colonia=").append(colonia);
+        sb.append(", id_cliente=").append(id_cliente);
+        sb.append('}');
+        return sb.toString();
+    }
 }
