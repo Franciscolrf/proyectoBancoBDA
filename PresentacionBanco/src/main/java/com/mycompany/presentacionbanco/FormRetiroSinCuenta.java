@@ -42,55 +42,13 @@ public class FormRetiroSinCuenta extends javax.swing.JFrame {
         this.sinCuentaDAO = new SinCuentaDAO(conexion);
         this.transaccionDAO = new TransaccionDAO(conexion);
         this.cuentaDAO = new CuentaDAO(conexion);
-    }
-
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        PantallaInicial pi = new PantallaInicial(clienteDAO, conexion);
-        pi.setVisible(true);
-        this.dispose();
-    }                                         
-
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // primera validacion, que tenga texto Hecha :D
-        // segunda validacion, que el folio y la contraseña existan y sean de la misma cosita
-        // tercera validacion, el estado debe de ser activo
-        if (!txfFolio.getText().equals("") && !String.valueOf(pasContraseña.getPassword()).equals("")) {
-            if (!this.realizarRetiro()) {
-                JOptionPane.showMessageDialog(this, "El folio ha caducado o ya fue retirado");
-
-                return;
-            }
-            JOptionPane.showMessageDialog(this, "Se retiro correctamente");
-            PantallaInicial pi = new PantallaInicial(clienteDAO, conexion);
-            pi.setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "Ingrese los datos requeridos");
-        }
-
     }                                          
 
     private void pasContraseñaActionPerformed(java.awt.event.ActionEvent evt) {                                              
 
-    }                                             
+    }                                                                             
 
-    private void txfFolioKeyTyped(java.awt.event.KeyEvent evt) {                                  
-        int key = evt.getKeyChar();
-        boolean numero = key >= 48 && key <= 57;
-
-        if (!numero) {
-            evt.consume();
-        }
-    }                                 
-
-    private void pasContraseñaKeyTyped(java.awt.event.KeyEvent evt) {                                       
-        int key = evt.getKeyChar();
-        boolean numero = key >= 48 && key <= 57;
-
-        if (!numero) {
-            evt.consume();
-        }
-    }                                      
+                                        
     /**
      * Obtiene una instancia de SinCuenta correspondiente al folio y contraseña
      * ingresados.
@@ -198,6 +156,8 @@ public class FormRetiroSinCuenta extends javax.swing.JFrame {
         txtIntroduzcaLosDatos2 = new javax.swing.JLabel();
         txfFolio = new javax.swing.JTextField();
         pasContraseña = new javax.swing.JPasswordField();
+        btnVolver = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -228,8 +188,32 @@ public class FormRetiroSinCuenta extends javax.swing.JFrame {
         txtIntroduzcaLosDatos2.setText("Contraseña:");
 
         txfFolio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txfFolio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfFolioKeyTyped(evt);
+            }
+        });
 
         pasContraseña.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        pasContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                pasContraseñaKeyTyped(evt);
+            }
+        });
+
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -246,12 +230,19 @@ public class FormRetiroSinCuenta extends javax.swing.JFrame {
                         .addGap(253, 253, 253)
                         .addComponent(txtIntroduzcaLosDatos))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(txtIntroduzcaLosDatos1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txfFolio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(106, 106, 106)
-                        .addComponent(txtIntroduzcaLosDatos2)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(181, 181, 181)
+                                .addComponent(btnVolver)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAceptar))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(88, 88, 88)
+                                .addComponent(txtIntroduzcaLosDatos1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txfFolio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(106, 106, 106)
+                                .addComponent(txtIntroduzcaLosDatos2)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pasContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(58, Short.MAX_VALUE))
@@ -274,7 +265,11 @@ public class FormRetiroSinCuenta extends javax.swing.JFrame {
                     .addComponent(txtIntroduzcaLosDatos2)
                     .addComponent(txfFolio, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pasContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVolver)
+                    .addComponent(btnAceptar))
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -293,9 +288,51 @@ public class FormRetiroSinCuenta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        if (!txfFolio.getText().equals("") && !String.valueOf(pasContraseña.getPassword()).equals("")) {
+            if (!this.realizarRetiro()) {
+                JOptionPane.showMessageDialog(this, "El folio ha caducado o ya fue retirado");
+
+                return;
+            }
+            JOptionPane.showMessageDialog(this, "Se retiro correctamente");
+            PantallaInicial pi = new PantallaInicial(clienteDAO, conexion);
+            pi.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese los datos requeridos");
+        }
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        PantallaInicial pi = new PantallaInicial(clienteDAO, conexion);
+        pi.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void txfFolioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfFolioKeyTyped
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;
+
+        if (!numero) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txfFolioKeyTyped
+
+    private void pasContraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pasContraseñaKeyTyped
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;
+
+        if (!numero) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_pasContraseñaKeyTyped
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField pasContraseña;
