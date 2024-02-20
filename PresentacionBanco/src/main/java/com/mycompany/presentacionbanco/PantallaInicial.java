@@ -4,19 +4,108 @@
  */
 package com.mycompany.presentacionbanco;
 
+import com.mycompany.dominiobanco.Cliente;
+import conexion.IConexion;
+import dao.ClienteDAO;
+import dao.CuentaDAO;
+import dao.IClienteDAO;
+import dao.ICuentaDAO;
+import excepciones.PersistenciaException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import utiles.EncriptarPassword;
+
 /**
  *
  * @author ID145
  */
 public class PantallaInicial extends javax.swing.JFrame {
 
+    private final IClienteDAO clienteDAO;
+    private final IConexion conexion;
+
     /**
      * Creates new form PantallaInicial
      */
-    public PantallaInicial() {
+    public PantallaInicial(IClienteDAO clienteDAO, IConexion conexion) {
         initComponents();
+        this.clienteDAO = clienteDAO;
+        this.conexion = conexion;
     }
+    
+    private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {                                                   
+        FormRetiroSinCuenta rsc = new FormRetiroSinCuenta(clienteDAO, conexion);
+        rsc.setVisible(true);
+        this.dispose();
+    }                                                  
 
+    private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        RegistroCliente rc = new RegistroCliente((ClienteDAO) clienteDAO, conexion);
+        rc.setVisible(true);
+        this.dispose();
+    }                                              
+
+    private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        if (txtUsuario.getText().equals("") || String.valueOf(pasContraseñaUsuario.getPassword()).equals("")) {
+            JOptionPane.showMessageDialog(this, "Todo los campos deben estar llenos");
+            return;
+        }
+
+        Cliente cliente = login();
+        if (cliente == null) {
+            JOptionPane.showMessageDialog(this, "El usuario o la contraseña no coinciden");
+            return;
+
+        }
+        ICuentaDAO cuentaDAO = new CuentaDAO(conexion);
+        MenuPrincipal mp = new MenuPrincipal(cliente, cuentaDAO, conexion);
+        mp.setVisible(true);
+        this.dispose();
+    }                                          
+
+    private void pasContraseñaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {                                                     
+
+    }                                                    
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+    }                                          
+
+    private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {                                    
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;
+
+        if (!numero) {
+            evt.consume();
+        }
+    }                                   
+
+    /**
+     * Se encarga de verificar si elcliente existe y la contraseña sea la del cliente
+     *
+     * @return Cliente loggeado o si falla, regresa nulo
+     * @throws PersistenciaException por si falla en accesar a los datos
+     */
+    private Cliente login() {
+        Cliente cliente = null;
+        try {
+            String usuario = this.txtUsuario.getText();
+            char[] contrasenia = this.pasContraseñaUsuario.getPassword();
+            cliente = this.clienteDAO.consultarCliente(Integer.valueOf(usuario));
+            if (cliente == null) {
+                return null;
+            }
+            if (!EncriptarPassword.comprobarContrasenia(String.valueOf(contrasenia), cliente.getContrasena())) {
+                return null;
+            }
+
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(PantallaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cliente;
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,57 +115,142 @@ public class PantallaInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        txtTitulo = new javax.swing.JLabel();
+        txtIDdeUsuario = new javax.swing.JLabel();
+        txtContraseña = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JTextField();
+        pasContraseñaUsuario = new javax.swing.JPasswordField();
+        btnRetiroSinCuenta = new javax.swing.JButton();
+        btnRegistrarse = new javax.swing.JButton();
+        btnAcceder = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 187, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 177, Short.MAX_VALUE)
+        );
+
+        txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        txtTitulo.setText("Banco");
+
+        txtIDdeUsuario.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        txtIDdeUsuario.setText("ID de usuario:");
+
+        txtContraseña.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        txtContraseña.setText("Contraseña:");
+
+        txtUsuario.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+
+        pasContraseñaUsuario.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+
+        btnRetiroSinCuenta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnRetiroSinCuenta.setText("Retiro sin cuenta");
+
+        btnRegistrarse.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnRegistrarse.setText("Registrarse");
+
+        btnAcceder.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnAcceder.setText("Acceder");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(txtTitulo))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtIDdeUsuario)
+                            .addComponent(txtContraseña))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pasContraseñaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(btnRetiroSinCuenta)
+                .addGap(138, 138, 138)
+                .addComponent(btnRegistrarse)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 245, Short.MAX_VALUE)
+                .addComponent(btnAcceder)
+                .addGap(124, 124, 124))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(txtTitulo)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addComponent(txtIDdeUsuario))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(txtContraseña))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(pasContraseñaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRetiroSinCuenta)
+                    .addComponent(btnRegistrarse)
+                    .addComponent(btnAcceder))
+                .addGap(69, 69, 69))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PantallaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PantallaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PantallaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PantallaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PantallaInicial().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAcceder;
+    private javax.swing.JButton btnRegistrarse;
+    private javax.swing.JButton btnRetiroSinCuenta;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPasswordField pasContraseñaUsuario;
+    private javax.swing.JLabel txtContraseña;
+    private javax.swing.JLabel txtIDdeUsuario;
+    private javax.swing.JLabel txtTitulo;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
