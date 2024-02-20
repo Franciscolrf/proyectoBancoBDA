@@ -10,7 +10,7 @@ import utiles.EncriptarPassword;
  */
 public class ClienteNuevoDTO {
 
-    private String contrasenia;
+    private String contrasena;
     private String nombres;
     private String apellido_paterno;
     private String apellido_materno;
@@ -26,8 +26,8 @@ public class ClienteNuevoDTO {
      *
      * @return La contraseña del cliente.
      */
-    public String getContrasenia() {
-        return contrasenia;
+    public String getContrasena() {
+        return contrasena;
     }
 
     /**
@@ -35,8 +35,8 @@ public class ClienteNuevoDTO {
      *
      * @param contrasenia La contraseña del cliente a establecer.
      */
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = EncriptarPassword.encriptar(contrasenia);
+    public void setContrasena(String contrasena) {
+        this.contrasena = EncriptarPassword.encriptar(contrasena);
 
     }
 
