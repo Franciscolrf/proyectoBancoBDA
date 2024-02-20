@@ -269,4 +269,23 @@ public class Cliente {
         final Cliente other = (Cliente) obj;
        return Objects.equals(this.id, other.id);
     }
+    /**
+     * Método que devuelve una cadena que representa al objeto.
+     * @return Cadena que representa al objeto.
+     */
+    @Override
+    public String toString(){
+        StringBuilder sb= new StringBuilder();
+        sb.append("Cliente{");
+        sb.append("id=").append(id);
+        sb.append(", contrasena=").append(contrasena);
+        sb.append(", usuario=").append(usuario);
+        sb.append(", nombres=").append(nombres);
+        sb.append(", apellido_paterno=").append(apellido_paterno);
+        sb.append(", apellido_materno=").append(apellido_materno);
+        sb.append(", nacimiento=").append(nacimiento);
+        sb.append(", edad=").append(edad);
+        sb.append("}");
+        return sb.toString();
+    }
 }
