@@ -48,5 +48,26 @@ public class Cuenta {
         this.esta_activo = esta_activo;
     }
 
-    
+    /**
+     * Constructor de la clase Cuenta que inicializa todos los campos excepto el ID de la cuenta y la fecha de apertura.
+     * @param numero
+     * @param saldo
+     * @param id_cliente
+     * @param esta_activo
+     */
+    public Cuenta(int numero, float saldo, int id_cliente, boolean esta_activo) {
+        this.numero = numero;
+        this.saldo = saldo;
+        this.id_cliente = id_cliente;
+        this.esta_activo = esta_activo;
+    }
+
+    /**
+     * Constructor por defecto.
+     */
+    public Cuenta() {
+    }
+
+
+
 }
