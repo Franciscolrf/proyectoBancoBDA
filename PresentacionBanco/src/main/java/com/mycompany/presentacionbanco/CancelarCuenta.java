@@ -229,7 +229,7 @@ public class CancelarCuenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        if(EncriptarPassword.comprobarContrasenia(pasContraseñaUsuario.getText(), cliente.getContrasena())){
+        if(EncriptarPassword.comprobarContrasena(pasContraseñaUsuario.getText(), cliente.getContrasena())){
             try {
                 cuentaDAO.CancelarCuenta(cuenta.getId_cuenta());
             } catch (PersistenciaException ex) {

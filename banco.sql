@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS Clientes (
     apellido_materno VARCHAR(50),
     fecha_nacimiento DATE,
     edad INT,
-    contrasenia varchar(60),
+    contrasena varchar(60),
     usuario INT 
 );
 
@@ -146,24 +146,24 @@ CREATE TABLE IF NOT EXISTS SinCuenta (
     id_transaccion INT,
     estado ENUM('cobrado', 'no cobrado','pendiente'),
     folio INT,
-    contrasenia CHAR(8),
+    contrasena CHAR(8),
     FOREIGN KEY (id_transaccion) REFERENCES Transacciones(id)
 );
 
 
 DELIMITER $$
-CREATE TRIGGER generar_folio_y_contrasenia
+CREATE TRIGGER generar_folio_y_contrasena
 BEFORE INSERT ON SinCuenta
 FOR EACH ROW
 BEGIN
     DECLARE nuevo_folio INT;
-    DECLARE nueva_contrasenia CHAR(8);
+    DECLARE nueva_contrasena CHAR(8);
     
     SET nuevo_folio = FLOOR(RAND() * 900000) + 100000; 
-    SET nueva_contrasenia = LPAD(FLOOR(RAND() * 100000000), 8, '0'); 
+    SET nueva_contrasena = LPAD(FLOOR(RAND() * 100000000), 8, '0'); 
     
     SET NEW.folio = nuevo_folio;
-    SET NEW.contrasenia = nueva_contrasenia;
+    SET NEW.contrasena = nueva_contrasena;
 END;
  $$
 DELIMITER ;
@@ -172,7 +172,7 @@ DELIMITER $$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarEstadoTransaccion`(
     IN p_folio INT,
-    IN p_contrasenia VARCHAR(8)
+    IN p_contrasena VARCHAR(8)
 )
 BEGIN
     DECLARE fecha_actual DATETIME;

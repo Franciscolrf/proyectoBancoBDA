@@ -40,11 +40,11 @@ public interface IClienteDAO {
     /**
      * Consulta un cliente por su usuario y contraseña.
      * @param usuario el usuario del cliente a consultar.
-     * @param contrasenia la contraseña del cliente a consultar.
+     * @param contrasena la contraseña del cliente a consultar.
      * @return el cliente consultado.
      * @throws PersistenciaException si ocurre un error al intentar consultar el cliente.
      */
-    Cliente consultarCliente(String usuario, String contrasenia) throws PersistenciaException;
+    Cliente consultarCliente(String usuario, String contrasena) throws PersistenciaException;
 
     /**
      * Actualiza un cliente en la base de datos.

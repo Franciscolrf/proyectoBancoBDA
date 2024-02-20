@@ -50,7 +50,7 @@ public class ClienteDAO implements IClienteDAO {
     @Override
     public Cliente agregar(ClienteNuevoDTO clienteNuevo) throws PersistenciaException {
         String setenciaSQL = """
-                INSERT INTO Clientes(contrasenia,nombres,apellido_paterno,apellido_materno,fecha_nacimiento)
+                INSERT INTO Clientes(contrasena,nombres,apellido_paterno,apellido_materno,fecha_nacimiento)
                             VALUES(?,?,?,?,?);
                 """;
         try (
@@ -107,7 +107,7 @@ public class ClienteDAO implements IClienteDAO {
     @Override
     public Cliente consultarCliente(int usuario) throws PersistenciaException {
         String setenciaSQL = """
-                SELECT id,usuario,contrasenia,nombres,apellido_paterno,apellido_materno,fecha_nacimiento,edad FROM Clientes WHERE usuario=?;
+                SELECT id,usuario,contrasena,nombres,apellido_paterno,apellido_materno,fecha_nacimiento,edad FROM Clientes WHERE usuario=?;
                 """;
 
         try (
@@ -149,7 +149,7 @@ public class ClienteDAO implements IClienteDAO {
     @Override
     public Cliente consultarCliente(String usuario, String contrasena) throws PersistenciaException {
         String setenciaSQL = """
-                SELECT id,usuario,contrasenia,nombres,apellido_paterno,apellido_materno,fecha_nacimiento,edad FROM Clientes WHERE usuario=? and contrasenia=?;
+                SELECT id,usuario,contrasena,nombres,apellido_paterno,apellido_materno,fecha_nacimiento,edad FROM Clientes WHERE usuario=? and contrasena=?;
                 """;
 
         try (

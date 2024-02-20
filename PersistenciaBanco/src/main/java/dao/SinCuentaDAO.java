@@ -88,7 +88,7 @@ public class SinCuentaDAO implements ISinCuentaDAO {
     @Override
     public SinCuenta consultar(int id_transaccion) throws PersistenciaException {
         String sentenciaSQL = """
-                SELECT folio,contrasenia FROM SinCuenta WHERE id_transaccion=?;
+                SELECT folio,contrasena FROM SinCuenta WHERE id_transaccion=?;
                 """;
 
         try (
@@ -126,7 +126,7 @@ public class SinCuentaDAO implements ISinCuentaDAO {
     @Override
     public SinCuenta consultarSinCuenta(int folio, String contrasena) throws PersistenciaException {
         String sentenciaSQL = """
-                SELECT * FROM SinCuenta WHERE folio=? and contrasenia =?;
+                SELECT * FROM SinCuenta WHERE folio=? and contrasena =?;
                 """;
 
         try (

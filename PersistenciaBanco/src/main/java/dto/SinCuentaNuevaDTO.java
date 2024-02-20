@@ -66,11 +66,11 @@ public class SinCuentaNuevaDTO {
     /**
      * Establece la contraseña de la transacción sin cuenta asociada.
      *
-     * @param contrasenia La contraseña de la transacción sin cuenta asociada a
+     * @param contrasena La contraseña de la transacción sin cuenta asociada a
      * establecer.
      */
-    public void setContrasenia(int contrasenia) {
-        this.contrasena = contrasenia;
+    public void setContrasena(int contrasena) {
+        this.contrasena = contrasena;
     }
 
     /**

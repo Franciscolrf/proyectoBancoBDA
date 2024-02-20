@@ -46,12 +46,12 @@ public class PantallaInicial extends javax.swing.JFrame {
         Cliente cliente = null;
         try {
             String usuario = this.txtUsuario.getText();
-            char[] contrasenia = this.pasContraseñaUsuario.getPassword();
+            char[] contrasena = this.pasContraseñaUsuario.getPassword();
             cliente = this.clienteDAO.consultarCliente(Integer.valueOf(usuario));
             if (cliente == null) {
                 return null;
             }
-            if (!EncriptarPassword.comprobarContrasenia(String.valueOf(contrasenia), cliente.getContrasena())) {
+            if (!EncriptarPassword.comprobarContrasena(String.valueOf(contrasena), cliente.getContrasena())) {
                 return null;
             }
 
@@ -232,7 +232,7 @@ public class PantallaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
-        if (txtUsuario.getText().equals("") || String.valueOf(pasContraseñaUsuario.getPassword()).equals("")) {
+         if (txtUsuario.getText().equals("") || String.valueOf(pasContraseñaUsuario.getPassword()).equals("")) {
             JOptionPane.showMessageDialog(this, "Todo los campos deben estar llenos");
             return;
         }

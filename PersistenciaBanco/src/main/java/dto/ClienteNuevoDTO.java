@@ -33,7 +33,7 @@ public class ClienteNuevoDTO {
     /**
      * Establece la contraseña del cliente.
      *
-     * @param contrasenia La contraseña del cliente a establecer.
+     * @param contrasena La contraseña del cliente a establecer.
      */
     public void setContrasena(String contrasena) {
         this.contrasena = EncriptarPassword.encriptar(contrasena);
