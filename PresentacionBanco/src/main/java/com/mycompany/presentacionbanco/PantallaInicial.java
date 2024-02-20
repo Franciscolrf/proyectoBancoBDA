@@ -34,52 +34,7 @@ public class PantallaInicial extends javax.swing.JFrame {
         this.conexion = conexion;
     }
     
-    private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {                                                   
-        FormRetiroSinCuenta rsc = new FormRetiroSinCuenta(clienteDAO, conexion);
-        rsc.setVisible(true);
-        this.dispose();
-    }                                                  
-
-    private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        RegistroCliente rc = new RegistroCliente((ClienteDAO) clienteDAO, conexion);
-        rc.setVisible(true);
-        this.dispose();
-    }                                              
-
-    private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        if (txtUsuario.getText().equals("") || String.valueOf(pasContraseñaUsuario.getPassword()).equals("")) {
-            JOptionPane.showMessageDialog(this, "Todo los campos deben estar llenos");
-            return;
-        }
-
-        Cliente cliente = login();
-        if (cliente == null) {
-            JOptionPane.showMessageDialog(this, "El usuario o la contraseña no coinciden");
-            return;
-
-        }
-        ICuentaDAO cuentaDAO = new CuentaDAO(conexion);
-        MenuPrincipal mp = new MenuPrincipal(cliente, cuentaDAO, conexion);
-        mp.setVisible(true);
-        this.dispose();
-    }                                          
-
-    private void pasContraseñaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {                                                     
-
-    }                                                    
-
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
-    }                                          
-
-    private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {                                    
-        int key = evt.getKeyChar();
-        boolean numero = key >= 48 && key <= 57;
-
-        if (!numero) {
-            evt.consume();
-        }
-    }                                   
+                                      
 
     /**
      * Se encarga de verificar si elcliente existe y la contraseña sea la del cliente
@@ -151,17 +106,42 @@ public class PantallaInicial extends javax.swing.JFrame {
         txtContraseña.setText("Contraseña:");
 
         txtUsuario.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyTyped(evt);
+            }
+        });
 
         pasContraseñaUsuario.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        pasContraseñaUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                pasContraseñaUsuarioKeyTyped(evt);
+            }
+        });
 
         btnRetiroSinCuenta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnRetiroSinCuenta.setText("Retiro sin cuenta");
+        btnRetiroSinCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetiroSinCuentaActionPerformed(evt);
+            }
+        });
 
         btnRegistrarse.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnRegistrarse.setText("Registrarse");
+        btnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarseActionPerformed(evt);
+            }
+        });
 
         btnAcceder.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAcceder.setText("Acceder");
+        btnAcceder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAccederActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -238,6 +218,49 @@ public class PantallaInicial extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuentaActionPerformed
+        FormRetiroSinCuenta rsc = new FormRetiroSinCuenta(clienteDAO, conexion);
+        rsc.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRetiroSinCuentaActionPerformed
+
+    private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
+        RegistroCliente rc = new RegistroCliente((ClienteDAO) clienteDAO, conexion);
+        rc.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRegistrarseActionPerformed
+
+    private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
+        if (txtUsuario.getText().equals("") || String.valueOf(pasContraseñaUsuario.getPassword()).equals("")) {
+            JOptionPane.showMessageDialog(this, "Todo los campos deben estar llenos");
+            return;
+        }
+
+        Cliente cliente = login();
+        if (cliente == null) {
+            JOptionPane.showMessageDialog(this, "El usuario o la contraseña no coinciden");
+            return;
+
+        }
+        ICuentaDAO cuentaDAO = new CuentaDAO(conexion);
+        MenuPrincipal mp = new MenuPrincipal(cliente, cuentaDAO, conexion);
+        mp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAccederActionPerformed
+
+    private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;
+
+        if (!numero) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtUsuarioKeyTyped
+
+    private void pasContraseñaUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pasContraseñaUsuarioKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pasContraseñaUsuarioKeyTyped
 
     
 
