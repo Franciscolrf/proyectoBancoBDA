@@ -4,17 +4,39 @@
  */
 package com.mycompany.presentacionbanco;
 
+import com.mycompany.dominiobanco.Cliente;
+import com.mycompany.dominiobanco.Cuenta;
+import com.mycompany.dominiobanco.Transaccion;
+import conexion.IConexion;
+import dao.ICuentaDAO;
+
 /**
  *
  * @author ID145
  */
 public class ConfirmacionTransferencia extends javax.swing.JFrame {
 
+    private Cliente cliente;
+    private Cuenta cuenta;
+    private ICuentaDAO cuentaDAO;
+    private final IConexion conexion;
     /**
      * Creates new form ConfirmacionTransferencia
      */
-    public ConfirmacionTransferencia() {
+    public ConfirmacionTransferencia(Cliente cliente, Cuenta cuenta, Transaccion transacccion, String cuentaDestino, ICuentaDAO cuentaDAO, IConexion conexion) {
         initComponents();
+        this.cuentaDAO = cuentaDAO;
+        this.conexion = conexion;
+        this.cuenta = cuenta;
+        this.cliente = cliente;
+        
+        String saludo = txtSaludo.getText().replaceAll("Usuario", cliente.getNombres());
+        txtSaludo.setText(saludo);
+
+        txtIDeTarjeta.setText("Tarjeta " + cuenta.getNumero());
+        txtCantidad.setText("Cantidad: " + transacccion.getMonto());
+        txtNumeroCuentaDestino.setText("Numero de cuenta: " + cuentaDestino);
+        txtFechaHora.setText("Fecha y Hora: " + transacccion.getFecha());
     }
 
     /**
@@ -26,57 +48,109 @@ public class ConfirmacionTransferencia extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        txtFechaHora = new javax.swing.JLabel();
+        txtSaludo = new javax.swing.JLabel();
+        txtTransferenciaRealizada = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtCantidad = new javax.swing.JLabel();
+        txtNumeroCuentaDestino = new javax.swing.JLabel();
+        txtIDeTarjeta = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        txtTitulo = new javax.swing.JLabel();
+        btnCrearTarjetas = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtFechaHora.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtFechaHora.setText("Fecha y Hora:");
+        jPanel1.add(txtFechaHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
+
+        txtSaludo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtSaludo.setText("¡Hola, Usuario!");
+        jPanel1.add(txtSaludo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, -1, -1));
+
+        txtTransferenciaRealizada.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtTransferenciaRealizada.setText("Transferencia Realizada con exito!");
+        jPanel1.add(txtTransferenciaRealizada, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel4.setText("Transferencia Realizada con exito!");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
+
+        txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtCantidad.setText("Cantidad:");
+        jPanel1.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
+
+        txtNumeroCuentaDestino.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtNumeroCuentaDestino.setText("Numero de cuenta:");
+        jPanel1.add(txtNumeroCuentaDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, -1, -1));
+
+        txtIDeTarjeta.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtIDeTarjeta.setText("Tarjeta");
+        jPanel1.add(txtIDeTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtTitulo.setText("Banco");
+        jPanel1.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
+
+        btnCrearTarjetas.setText("Volver");
+        btnCrearTarjetas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearTarjetasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCrearTarjetas, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 420, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConfirmacionTransferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConfirmacionTransferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConfirmacionTransferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConfirmacionTransferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnCrearTarjetasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearTarjetasActionPerformed
+        Tarjeta tarjeta = new Tarjeta(cliente, cuenta, conexion, cuentaDAO);
+        tarjeta.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCrearTarjetasActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ConfirmacionTransferencia().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCrearTarjetas;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel txtCantidad;
+    private javax.swing.JLabel txtFechaHora;
+    private javax.swing.JLabel txtIDeTarjeta;
+    private javax.swing.JLabel txtNumeroCuentaDestino;
+    private javax.swing.JLabel txtSaludo;
+    private javax.swing.JLabel txtTitulo;
+    private javax.swing.JLabel txtTransferenciaRealizada;
     // End of variables declaration//GEN-END:variables
 }
