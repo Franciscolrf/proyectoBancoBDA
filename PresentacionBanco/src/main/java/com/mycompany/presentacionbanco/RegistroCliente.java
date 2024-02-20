@@ -4,17 +4,42 @@
  */
 package com.mycompany.presentacionbanco;
 
+import com.mycompany.dominiobanco.Cliente;
+import com.mycompany.dominiobanco.Domicilio;
+import static com.mycompany.presentacionbanco.Movimientos.verificarFormatoFecha;
+import conexion.IConexion;
+import dao.ClienteDAO;
+import dao.DomicilioDAO;
+import dao.IClienteDAO;
+import dao.IDomicilioDAO;
+import dto.ClienteNuevoDTO;
+import dto.DomicilioNuevoDTO;
+import excepciones.PersistenciaException;
+import java.awt.event.KeyEvent;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ID145
  */
 public class RegistroCliente extends javax.swing.JFrame {
 
+     private final IClienteDAO clienteDAO;
+    private final IConexion conexion;
+    private final IDomicilioDAO domicilioDAO;
+
     /**
      * Creates new form RegistroCliente
      */
-    public RegistroCliente() {
+    public RegistroCliente(ClienteDAO clienteDAO, IConexion conexion) {
         initComponents();
+
+        this.clienteDAO = clienteDAO;
+        this.conexion = conexion;
+        this.domicilioDAO = new DomicilioDAO(conexion);
     }
 
     /**
@@ -26,57 +51,434 @@ public class RegistroCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        txtTitulo = new javax.swing.JLabel();
+        txtINombre = new javax.swing.JLabel();
+        txtApellidoPaterno = new javax.swing.JLabel();
+        txtApellidoMaterno = new javax.swing.JLabel();
+        txtNacimiento = new javax.swing.JLabel();
+        txtContraseña = new javax.swing.JLabel();
+        txtConfirmarContraseña = new javax.swing.JLabel();
+        txfNombre = new javax.swing.JTextField();
+        txfApellidoPaterno = new javax.swing.JTextField();
+        txfApellidoMaterno = new javax.swing.JTextField();
+        txfNacimiento = new javax.swing.JTextField();
+        txfContraseña = new javax.swing.JTextField();
+        txfConfirmarContraseña = new javax.swing.JTextField();
+        txtCalle = new javax.swing.JLabel();
+        txtCodigoPostal = new javax.swing.JLabel();
+        txtColonia = new javax.swing.JLabel();
+        txtNumExterior = new javax.swing.JLabel();
+        txtNumInterior = new javax.swing.JLabel();
+        txfCalle = new javax.swing.JTextField();
+        txfCodigoPostal = new javax.swing.JTextField();
+        txfColonia = new javax.swing.JTextField();
+        txfNumExterior = new javax.swing.JTextField();
+        txfNumInterior = new javax.swing.JTextField();
+        btnVolver = new javax.swing.JButton();
+        btnCrear = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtTitulo.setText("Datos Personales:");
+
+        txtINombre.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtINombre.setText("Nombres");
+
+        txtApellidoPaterno.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtApellidoPaterno.setText("Apellido Paterno");
+
+        txtApellidoMaterno.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtApellidoMaterno.setText("Apellido Materno");
+
+        txtNacimiento.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtNacimiento.setText("Nacimiento (aaaa-mm-dd)");
+
+        txtContraseña.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtContraseña.setText("Contraseña");
+
+        txtConfirmarContraseña.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtConfirmarContraseña.setText("Confirmar Contraseña");
+
+        txfNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txfApellidoPaterno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txfApellidoMaterno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txfNacimiento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txfContraseña.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txfConfirmarContraseña.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txtCalle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtCalle.setText("Calle");
+
+        txtCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtCodigoPostal.setText("Codigo Postal");
+
+        txtColonia.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtColonia.setText("Colonia");
+
+        txtNumExterior.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtNumExterior.setText("Num. Exterior");
+
+        txtNumInterior.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtNumInterior.setText("Num. Interior");
+
+        txfCalle.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txfCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txfColonia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txfNumExterior.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txfNumInterior.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+
+        btnCrear.setText("Crear");
+        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtConfirmarContraseña)
+                    .addComponent(txtContraseña)
+                    .addComponent(txtINombre)
+                    .addComponent(txtApellidoPaterno)
+                    .addComponent(txtApellidoMaterno)
+                    .addComponent(txtNacimiento)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtTitulo)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txfNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtNumExterior))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txfApellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txfApellidoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtCodigoPostal)
+                                    .addComponent(txtCalle)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtColonia))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txfConfirmarContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txfContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtNumInterior)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txfCalle, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfCodigoPostal, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfColonia, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfNumExterior, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfNumInterior, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(166, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnVolver)
+                .addGap(122, 122, 122)
+                .addComponent(btnCrear)
+                .addGap(128, 128, 128))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(txtTitulo)))
+                .addGap(93, 93, 93)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtINombre)
+                    .addComponent(txfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCalle)
+                    .addComponent(txfCalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtApellidoPaterno)
+                    .addComponent(txfApellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigoPostal)
+                    .addComponent(txfCodigoPostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtApellidoMaterno)
+                        .addComponent(txfApellidoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtColonia)
+                        .addComponent(txfColonia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNacimiento)
+                            .addComponent(txfNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNumExterior)
+                            .addComponent(txfNumExterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(4, 4, 4)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtContraseña)
+                            .addComponent(txfContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtConfirmarContraseña)
+                            .addComponent(txfConfirmarContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtNumInterior)
+                    .addComponent(txfNumInterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVolver)
+                    .addComponent(btnCrear))
+                .addGap(58, 58, 58))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        PantallaInicial pi = new PantallaInicial(clienteDAO, conexion);
+        pi.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistroCliente().setVisible(true);
-            }
-        });
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+         ClienteNuevoDTO clienteNuevoDTO = crearCliente();
+        if (!verificarFormatoFecha(txfNacimiento.getText())) {
+            JOptionPane.showMessageDialog(this, "La fecha tiene que estar en formato aaaa-mm-dd");
+            return;
+        }
+        if (calcularEdad(txfNacimiento.getText()) < 18) {
+            JOptionPane.showMessageDialog(this, "Tienes que ser mayor de 18 años");
+            return;
+        }
+        if (clienteNuevoDTO == null) {
+            JOptionPane.showMessageDialog(this, "LAS CONTRASEÑAS NO COINCIDEN.");
+            return;
+        }
+        DomicilioNuevoDTO dom = crearDireccion();
+
+        DomicilioNuevoDTO domicilioNuevoDTO = crearDireccion();
+
+        try {
+            Cliente cliente = clienteDAO.agregar(clienteNuevoDTO);
+
+            dom.setId_cliente(cliente.getId());
+
+            Domicilio domicilio = domicilioDAO.agregar(dom);
+
+            JOptionPane.showMessageDialog(this, "Cliente registrado!\nTu numero de cliente es: " + cliente.getId());
+
+            PantallaInicial pi = new PantallaInicial(clienteDAO, conexion);
+            pi.setVisible(true);
+            this.dispose();
+        } catch (PersistenciaException ex) {
+            JOptionPane.showMessageDialog(this, "No se puede agregar al cliente.");
+        }
+    }//GEN-LAST:event_btnCrearActionPerformed
+
+    private int calcularEdad(String fecha) {
+        LocalDate fechaNacimiento = LocalDate.parse(fecha.replace("/", "-"));
+
+        LocalDate fechaActual = LocalDate.now();
+
+        int edad = Period.between(fechaNacimiento, fechaActual).getYears();
+        return edad;
+    }
+     private boolean verificarFormatoFecha(String fecha) {
+        String regex = "\\d{4}-\\d{2}-\\d{2}";
+        return Pattern.matches(regex, fecha);
+    }
+    private void txfNombreKeyTyped(java.awt.event.KeyEvent evt) {                                   
+        char c = evt.getKeyChar();
+        if (!Character.isLetter(c) && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_SPACE) {
+            evt.consume();
+        }
+    }                                  
+
+    private void txfApellidoPaternoKeyTyped(java.awt.event.KeyEvent evt) {                                            
+        char c = evt.getKeyChar();
+        if (!Character.isLetter(c) && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_SPACE) {
+            evt.consume();
+        }
+    }                                           
+
+    private void txfApellidoMaternoKeyTyped(java.awt.event.KeyEvent evt) {                                            
+        char c = evt.getKeyChar();
+        if (!Character.isLetter(c) && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_SPACE) {
+            evt.consume();
+        }
+    }                                           
+
+    private void txfCodigoPostalKeyTyped(java.awt.event.KeyEvent evt) {                                         
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) || txfCodigoPostal.getText().length() >= 5) {
+            evt.consume();
+        }
+    }                                        
+
+    private void txfNumExteriorKeyTyped(java.awt.event.KeyEvent evt) {                                        
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }                                       
+
+    private void txfNumInteriorKeyTyped(java.awt.event.KeyEvent evt) {                                        
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }                                       
+
+    private void txfContraseñaActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // TODO add your handling code here:
+    }                                             
+
+    private void txfNacimientoActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // TODO add your handling code here:
+    }                                             
+
+    private void txfNacimientoKeyTyped(java.awt.event.KeyEvent evt) {                                       
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) && c != '-') {
+            evt.consume();
+        }
+    }                                      
+
+    private void txfNombreActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+    }
+    /**
+     * Crea un objeto ClienteNuevoDTO con la información proporcionada en los
+     * campos de entrada.
+     *
+     * @return ClienteNuevoDTO con la información ingresada o null si las
+     * contraseñas no coinciden.
+     */
+    private ClienteNuevoDTO crearCliente() {
+        ClienteNuevoDTO clienteNuevoDTO = null;
+        if (txfContraseña.getText().equals(txfConfirmarContraseña.getText())) {
+            clienteNuevoDTO = new ClienteNuevoDTO();
+            clienteNuevoDTO.setNombres(txfNombre.getText());
+            clienteNuevoDTO.setApellido_paterno(txfApellidoPaterno.getText());
+            clienteNuevoDTO.setApellido_materno(txfApellidoMaterno.getText());
+            clienteNuevoDTO.setNacimiento(txfNacimiento.getText());
+            clienteNuevoDTO.setContrasena(txfContraseña.getText());
+        }
+        return clienteNuevoDTO;
     }
 
+    /**
+     * Crea un objeto DomicilioNuevoDTO con la información proporcionada en los
+     * campos de entrada.
+     *
+     * @return DomicilioNuevoDTO con la información ingresada.
+     */
+    private DomicilioNuevoDTO crearDireccion() {
+        DomicilioNuevoDTO dn = new DomicilioNuevoDTO();
+        dn.setCalle(txfCalle.getText());
+        dn.setCodigo_postal(Integer.parseInt(txfCodigoPostal.getText()));
+        dn.setColonia(txfColonia.getText());
+        dn.setNumero_exterior(Integer.valueOf(txfNumExterior.getText()));
+        if (!txfNumInterior.getText().equals("")) {
+            dn.setNumero_interior(Integer.valueOf(txfNumInterior.getText()));
+        } else {
+            dn.setNumero_interior(0);
+        }
+        return dn;
+    }
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCrear;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField txfApellidoMaterno;
+    private javax.swing.JTextField txfApellidoPaterno;
+    private javax.swing.JTextField txfCalle;
+    private javax.swing.JTextField txfCodigoPostal;
+    private javax.swing.JTextField txfColonia;
+    private javax.swing.JTextField txfConfirmarContraseña;
+    private javax.swing.JTextField txfContraseña;
+    private javax.swing.JTextField txfNacimiento;
+    private javax.swing.JTextField txfNombre;
+    private javax.swing.JTextField txfNumExterior;
+    private javax.swing.JTextField txfNumInterior;
+    private javax.swing.JLabel txtApellidoMaterno;
+    private javax.swing.JLabel txtApellidoPaterno;
+    private javax.swing.JLabel txtCalle;
+    private javax.swing.JLabel txtCodigoPostal;
+    private javax.swing.JLabel txtColonia;
+    private javax.swing.JLabel txtConfirmarContraseña;
+    private javax.swing.JLabel txtContraseña;
+    private javax.swing.JLabel txtINombre;
+    private javax.swing.JLabel txtNacimiento;
+    private javax.swing.JLabel txtNumExterior;
+    private javax.swing.JLabel txtNumInterior;
+    private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables
 }
