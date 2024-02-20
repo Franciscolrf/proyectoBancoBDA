@@ -182,7 +182,7 @@ BEGIN
     
     SET fecha_actual = NOW();
     
-	SELECT id_transaccion INTO transaccion_id FROM SinCuenta WHERE folio = p_folio AND contrasenia = p_contrasenia;
+	SELECT id_transaccion INTO transaccion_id FROM SinCuenta WHERE folio = p_folio AND contrasena = p_contrasena;
 SELECT fecha INTO fecha_transaccion FROM Transacciones WHERE id = transaccion_id;
     
     IF TIMESTAMPDIFF(MINUTE, fecha_transaccion, fecha_actual) >= 10 THEN
