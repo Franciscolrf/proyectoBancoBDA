@@ -102,15 +102,35 @@ public class FormTransferencia extends javax.swing.JFrame {
         txtCantidad.setText("Cantidad:");
 
         tfiNumCuenDestino.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tfiNumCuenDestino.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfiNumCuenDestinoKeyTyped(evt);
+            }
+        });
 
         tfiCantidad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tfiCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfiCantidadKeyTyped(evt);
+            }
+        });
 
         txtSaludo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txtSaludo.setText("¡Hola, Usuario!");
 
         btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         btnTransferirTarjetas.setText("Transferir");
+        btnTransferirTarjetas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransferirTarjetasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -191,23 +211,8 @@ public class FormTransferencia extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private boolean validarSaldo() {
-        float saldoDisponible = cuenta.getSaldo();
-        String saldoTransferir = tfiCantidad.getText();
-        return saldoDisponible > Float.valueOf(saldoTransferir) && Float.valueOf(saldoTransferir) > 0;
-    }
 
-    private Cuenta existenciaCuenta(int cuentaNum) {
-        Cuenta cuenta = null;
-        try {
-            cuenta = this.cuentaDAO.consultarCuenta(cuentaNum);
-        } catch (PersistenciaException ex) {
-            Logger.getLogger(PantallaInicial.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return cuenta;
-    }
-    private void btnTransferirTarjetasActionPerformed(java.awt.event.ActionEvent evt) {                                                      
-
+    private void btnTransferirTarjetasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirTarjetasActionPerformed
         if (tfiNumCuenDestino.getText().isEmpty() || tfiCantidad.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Todos los campos tienen que estar llenos.");
 
@@ -259,24 +264,24 @@ public class FormTransferencia extends javax.swing.JFrame {
         ConfirmacionTransferencia ct = new ConfirmacionTransferencia(cliente, this.cuenta, transaccionNueva, tfiNumCuenDestino.getText(), cuentaDAO, conexion);
         ct.setVisible(true);
         this.dispose();
-    }                                                     
+    }//GEN-LAST:event_btnTransferirTarjetasActionPerformed
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         Tarjeta tarjeta = new Tarjeta(cliente, this.cuenta, conexion, cuentaDAO);
         tarjeta.setVisible(true);
         this.dispose();
-    }                                         
+    }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void tfiNumCuenDestinoKeyTyped(java.awt.event.KeyEvent evt) {                                           
+    private void tfiNumCuenDestinoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfiNumCuenDestinoKeyTyped
         int key = evt.getKeyChar();
         boolean numero = key >= 48 && key <= 57;
 
         if (!numero) {
             evt.consume();
         }
-    }                                          
+    }//GEN-LAST:event_tfiNumCuenDestinoKeyTyped
 
-    private void tfiCantidadKeyTyped(java.awt.event.KeyEvent evt) {                                     
+    private void tfiCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfiCantidadKeyTyped
         char c = evt.getKeyChar();
         boolean esDigito = (c >= '0' && c <= '9');
         boolean esPunto = (c == '.' && !tfiCantidad.getText().contains("."));
@@ -295,11 +300,31 @@ public class FormTransferencia extends javax.swing.JFrame {
         if (!esDatosValidos) {
             evt.consume();
         }
-    }                                    
+    }//GEN-LAST:event_tfiCantidadKeyTyped
+    private boolean validarSaldo() {
+        float saldoDisponible = cuenta.getSaldo();
+        String saldoTransferir = tfiCantidad.getText();
+        return saldoDisponible > Float.valueOf(saldoTransferir) && Float.valueOf(saldoTransferir) > 0;
+    }
 
-    private void tfiCantidadActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-    }                                           
+    private Cuenta existenciaCuenta(int cuentaNum) {
+        Cuenta cuenta = null;
+        try {
+            cuenta = this.cuentaDAO.consultarCuenta(cuentaNum);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(PantallaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cuenta;
+    }
+                                                     
+
+                                            
+
+                                          
+
+                                       
+
+                                          
     /**
      * Crea una nueva transacción utilizando la información proporcionada en un
      * objeto TransaccionNuevaDTO.

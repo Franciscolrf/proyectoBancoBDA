@@ -180,6 +180,9 @@
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfiNumCuenDestinoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="tfiCantidad">
           <Properties>
@@ -187,6 +190,9 @@
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfiCantidadKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="txtSaludo">
           <Properties>
@@ -200,11 +206,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Volver"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVolverActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnTransferirTarjetas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Transferir"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTransferirTarjetasActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
