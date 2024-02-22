@@ -78,41 +78,53 @@ public class RegistroCliente extends javax.swing.JFrame {
         btnCrear = new javax.swing.JButton();
         txfContraseña = new javax.swing.JPasswordField();
         txfConfirmarContraseña = new javax.swing.JPasswordField();
+        txtTitulo1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+        jPanel1.setBackground(new java.awt.Color(241, 237, 237));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(255, 102, 102));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 35, Short.MAX_VALUE)
         );
 
+        txtTitulo.setBackground(new java.awt.Color(51, 51, 51));
         txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtTitulo.setForeground(new java.awt.Color(0, 0, 0));
         txtTitulo.setText("Datos Personales:");
 
         txtINombre.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtINombre.setForeground(new java.awt.Color(51, 51, 51));
         txtINombre.setText("Nombres");
 
         txtApellidoPaterno.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtApellidoPaterno.setForeground(new java.awt.Color(51, 51, 51));
         txtApellidoPaterno.setText("Apellido Paterno");
 
         txtApellidoMaterno.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtApellidoMaterno.setForeground(new java.awt.Color(51, 51, 51));
         txtApellidoMaterno.setText("Apellido Materno");
 
         txtNacimiento.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtNacimiento.setForeground(new java.awt.Color(51, 51, 51));
         txtNacimiento.setText("Nacimiento (aaaa-mm-dd)");
 
         txtContraseña.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtContraseña.setForeground(new java.awt.Color(51, 51, 51));
         txtContraseña.setText("Contraseña");
 
         txtConfirmarContraseña.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtConfirmarContraseña.setForeground(new java.awt.Color(51, 51, 51));
         txtConfirmarContraseña.setText("Confirmar Contraseña");
 
         txfNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -124,18 +136,23 @@ public class RegistroCliente extends javax.swing.JFrame {
         txfNacimiento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         txtCalle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtCalle.setForeground(new java.awt.Color(51, 51, 51));
         txtCalle.setText("Calle");
 
         txtCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtCodigoPostal.setForeground(new java.awt.Color(51, 51, 51));
         txtCodigoPostal.setText("Codigo Postal");
 
         txtColonia.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtColonia.setForeground(new java.awt.Color(51, 51, 51));
         txtColonia.setText("Colonia");
 
         txtNumExterior.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtNumExterior.setForeground(new java.awt.Color(51, 51, 51));
         txtNumExterior.setText("Num. Exterior");
 
         txtNumInterior.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtNumInterior.setForeground(new java.awt.Color(51, 51, 51));
         txtNumInterior.setText("Num. Interior");
 
         txfCalle.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -166,25 +183,34 @@ public class RegistroCliente extends javax.swing.JFrame {
 
         txfConfirmarContraseña.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
+        txtTitulo1.setBackground(new java.awt.Color(51, 51, 51));
+        txtTitulo1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtTitulo1.setForeground(new java.awt.Color(0, 0, 0));
+        txtTitulo1.setText("Registro");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtConfirmarContraseña)
-                    .addComponent(txtContraseña)
-                    .addComponent(txtINombre)
-                    .addComponent(txtApellidoPaterno)
-                    .addComponent(txtApellidoMaterno)
-                    .addComponent(txtNacimiento)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtTitulo)))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtConfirmarContraseña)
+                            .addComponent(txtContraseña)
+                            .addComponent(txtINombre)
+                            .addComponent(txtApellidoPaterno)
+                            .addComponent(txtApellidoMaterno)
+                            .addComponent(txtNacimiento)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTitulo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txfConfirmarContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -216,26 +242,22 @@ public class RegistroCliente extends javax.swing.JFrame {
                             .addComponent(txfColonia, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txfNumExterior, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txfNumInterior, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txfConfirmarContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61)
+                        .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(166, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnVolver)
-                .addGap(122, 122, 122)
-                .addComponent(btnCrear)
-                .addGap(128, 128, 128))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(txtTitulo)))
-                .addGap(93, 93, 93)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtTitulo1)
+                .addGap(39, 39, 39)
+                .addComponent(txtTitulo)
+                .addGap(49, 49, 49)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtINombre)
                     .addComponent(txfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -481,5 +503,6 @@ public class RegistroCliente extends javax.swing.JFrame {
     private javax.swing.JLabel txtNumExterior;
     private javax.swing.JLabel txtNumInterior;
     private javax.swing.JLabel txtTitulo;
+    private javax.swing.JLabel txtTitulo1;
     // End of variables declaration//GEN-END:variables
 }
