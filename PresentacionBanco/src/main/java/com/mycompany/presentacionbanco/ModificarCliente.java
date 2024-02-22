@@ -64,17 +64,8 @@ public class ModificarCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txfCalle = new javax.swing.JTextField();
-        txfCodigoPostal = new javax.swing.JTextField();
-        txfColonia = new javax.swing.JTextField();
-        jPanel11 = new javax.swing.JPanel();
-        txfNumExterior = new javax.swing.JTextField();
-        txtTitulo = new javax.swing.JLabel();
-        txfNumInterior = new javax.swing.JTextField();
         txtINombre = new javax.swing.JLabel();
-        btnVolver = new javax.swing.JButton();
         txtApellidoPaterno = new javax.swing.JLabel();
-        btnCrear = new javax.swing.JButton();
         txtApellidoMaterno = new javax.swing.JLabel();
         txtNacimiento = new javax.swing.JLabel();
         txtContraseña = new javax.swing.JLabel();
@@ -85,96 +76,53 @@ public class ModificarCliente extends javax.swing.JFrame {
         txfNacimiento = new javax.swing.JTextField();
         txfContraseña = new javax.swing.JTextField();
         txfConfirmarContraseña = new javax.swing.JTextField();
+        jPanel12 = new javax.swing.JPanel();
+        txtTitulo = new javax.swing.JLabel();
+        jPanel11 = new javax.swing.JPanel();
         txtCalle = new javax.swing.JLabel();
         txtCodigoPostal = new javax.swing.JLabel();
         txtColonia = new javax.swing.JLabel();
         txtNumExterior = new javax.swing.JLabel();
         txtNumInterior = new javax.swing.JLabel();
-        jPanel12 = new javax.swing.JPanel();
+        txfNumExterior = new javax.swing.JTextField();
+        txfNumInterior = new javax.swing.JTextField();
+        txfColonia = new javax.swing.JTextField();
+        txfCodigoPostal = new javax.swing.JTextField();
+        txfCalle = new javax.swing.JTextField();
+        btnVolver = new javax.swing.JButton();
+        btnCrear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 204));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txfCalle.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        getContentPane().add(txfCalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(693, 202, 163, -1));
-
-        txfCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txfCodigoPostal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfCodigoPostalActionPerformed(evt);
-            }
-        });
-        txfCodigoPostal.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txfCodigoPostalKeyTyped(evt);
-            }
-        });
-        getContentPane().add(txfCodigoPostal, new org.netbeans.lib.awtextra.AbsoluteConstraints(693, 242, 163, -1));
-
-        txfColonia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        getContentPane().add(txfColonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(693, 282, 163, -1));
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
-
-        txfNumExterior.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        getContentPane().add(txfNumExterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(693, 336, 163, -1));
-
-        txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtTitulo.setText("Datos Personales:");
-        getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 24, -1, -1));
-
-        txfNumInterior.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        getContentPane().add(txfNumInterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(693, 371, 163, -1));
-
         txtINombre.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtINombre.setForeground(new java.awt.Color(51, 51, 51));
         txtINombre.setText("Nombres");
         getContentPane().add(txtINombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(206, 199, -1, -1));
 
-        btnVolver.setText("Volver");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 463, -1, -1));
-
         txtApellidoPaterno.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtApellidoPaterno.setForeground(new java.awt.Color(51, 51, 51));
         txtApellidoPaterno.setText("Apellido Paterno");
         getContentPane().add(txtApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 239, -1, -1));
 
-        btnCrear.setText("Crear");
-        btnCrear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(662, 463, -1, -1));
-
         txtApellidoMaterno.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtApellidoMaterno.setForeground(new java.awt.Color(51, 51, 51));
         txtApellidoMaterno.setText("Apellido Materno");
         getContentPane().add(txtApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 279, -1, -1));
 
         txtNacimiento.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtNacimiento.setForeground(new java.awt.Color(51, 51, 51));
         txtNacimiento.setText("Nacimiento (aaaa-mm-dd)");
         getContentPane().add(txtNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 319, -1, -1));
 
         txtContraseña.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtContraseña.setForeground(new java.awt.Color(51, 51, 51));
         txtContraseña.setText("Contraseña");
         getContentPane().add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 371, -1, -1));
 
         txtConfirmarContraseña.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtConfirmarContraseña.setForeground(new java.awt.Color(51, 51, 51));
         txtConfirmarContraseña.setText("Confirmar Contraseña");
         getContentPane().add(txtConfirmarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 411, -1, -1));
 
@@ -196,37 +144,139 @@ public class ModificarCliente extends javax.swing.JFrame {
         txfConfirmarContraseña.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         getContentPane().add(txfConfirmarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 414, 163, -1));
 
+        jPanel12.setBackground(new java.awt.Color(240, 242, 242));
+
+        txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtTitulo.setForeground(new java.awt.Color(0, 0, 0));
+        txtTitulo.setText("Datos Personales:");
+
+        jPanel11.setBackground(new java.awt.Color(255, 102, 102));
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 35, Short.MAX_VALUE)
+        );
+
         txtCalle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtCalle.setForeground(new java.awt.Color(51, 51, 51));
         txtCalle.setText("Calle");
-        getContentPane().add(txtCalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(635, 199, -1, -1));
 
         txtCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtCodigoPostal.setForeground(new java.awt.Color(51, 51, 51));
         txtCodigoPostal.setText("Codigo Postal");
-        getContentPane().add(txtCodigoPostal, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 239, -1, -1));
 
         txtColonia.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtColonia.setForeground(new java.awt.Color(51, 51, 51));
         txtColonia.setText("Colonia");
-        getContentPane().add(txtColonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(606, 279, -1, -1));
 
         txtNumExterior.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtNumExterior.setForeground(new java.awt.Color(51, 51, 51));
         txtNumExterior.setText("Num. Exterior");
-        getContentPane().add(txtNumExterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 333, -1, -1));
 
         txtNumInterior.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtNumInterior.setForeground(new java.awt.Color(51, 51, 51));
         txtNumInterior.setText("Num. Interior");
-        getContentPane().add(txtNumInterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 371, -1, -1));
 
-        jPanel12.setBackground(new java.awt.Color(0, 153, 204));
+        txfNumExterior.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txfNumInterior.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txfColonia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        txfCodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txfCodigoPostal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfCodigoPostalActionPerformed(evt);
+            }
+        });
+        txfCodigoPostal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfCodigoPostalKeyTyped(evt);
+            }
+        });
+
+        txfCalle.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+
+        btnCrear.setText("Crear");
+        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 860, Short.MAX_VALUE)
+            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addComponent(txtTitulo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap(493, Short.MAX_VALUE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNumExterior)
+                    .addComponent(txtColonia)
+                    .addComponent(txtCalle)
+                    .addComponent(txtCodigoPostal)
+                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNumInterior)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txfNumInterior, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfNumExterior, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfColonia, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfCodigoPostal, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfCalle, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74)
+                .addComponent(txtTitulo)
+                .addGap(56, 56, 56)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCalle)
+                    .addComponent(txfCalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCodigoPostal)
+                    .addComponent(txfCodigoPostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtColonia)
+                    .addComponent(txfColonia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNumExterior)
+                    .addComponent(txfNumExterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNumInterior)
+                    .addComponent(txfNumInterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54))
         );
 
         getContentPane().add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 540));
@@ -347,16 +397,8 @@ public class ModificarCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JTextField txfApellidoMaterno;
     private javax.swing.JTextField txfApellidoPaterno;
     private javax.swing.JTextField txfCalle;
