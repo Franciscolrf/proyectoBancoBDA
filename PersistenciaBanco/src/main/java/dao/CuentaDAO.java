@@ -188,12 +188,12 @@ public class CuentaDAO implements ICuentaDAO{
      */
     @Override
     public Cuenta consultarCuentaId(int id) throws PersistenciaException {
-        String sentenciaSQL
+        String setenciaSQL
                 = """
                 SELECT id,fecha_apertura,numero,saldo,id_cliente,activo FROM cuentas
-                WHERE id = ?;
+                WHERE numero = ?;
             """;
-        try (Connection conexion = this.conexionDB.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL, Statement.RETURN_GENERATED_KEYS);) {
+        try (Connection conexion = this.conexionDB.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(setenciaSQL, Statement.RETURN_GENERATED_KEYS);) {
             comando.setInt(1, id);
             ResultSet resultado = comando.executeQuery();
 

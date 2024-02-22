@@ -63,13 +63,15 @@ public class FormRetiroSinCuenta extends javax.swing.JFrame {
             if (sinCuenta == null) {
                 return null;
             }
+            //sinCuenta.setEstado("pendiente");
             if (sinCuenta.getEstado().equalsIgnoreCase("no cobrado") || sinCuenta.getEstado().equalsIgnoreCase("cobrado")) {
+
                 return null;
             }
         } catch (PersistenciaException ex) {
             Logger.getLogger(FormRetiroSinCuenta.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        //sinCuenta.setEstado("cobrado");
         return sinCuenta;
     }
 
