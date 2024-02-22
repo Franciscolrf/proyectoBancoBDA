@@ -72,7 +72,7 @@ public class CancelarCuenta extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 621, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,11 +108,9 @@ public class CancelarCuenta extends javax.swing.JFrame {
         });
 
         txtSaludo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtSaludo.setForeground(new java.awt.Color(0, 0, 0));
         txtSaludo.setText("¡Adios, Usuario!");
 
         txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtTitulo.setForeground(new java.awt.Color(0, 0, 0));
         txtTitulo.setText("Cancelar Cuenta");
 
         pasContraseñaUsuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -178,7 +176,7 @@ public class CancelarCuenta extends javax.swing.JFrame {
                     .addComponent(txtTitulo))
                 .addGap(34, 34, 34)
                 .addComponent(txtIDeTarjeta)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
                 .addComponent(pasContraseñaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
