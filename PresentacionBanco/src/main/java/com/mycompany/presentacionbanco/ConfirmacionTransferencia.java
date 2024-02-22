@@ -49,6 +49,7 @@ public class ConfirmacionTransferencia extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         txtFechaHora = new javax.swing.JLabel();
         txtSaludo = new javax.swing.JLabel();
         txtTransferenciaRealizada = new javax.swing.JLabel();
@@ -56,24 +57,41 @@ public class ConfirmacionTransferencia extends javax.swing.JFrame {
         txtCantidad = new javax.swing.JLabel();
         txtNumeroCuentaDestino = new javax.swing.JLabel();
         txtIDeTarjeta = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
         txtTitulo = new javax.swing.JLabel();
         btnCrearTarjetas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+        jPanel1.setBackground(new java.awt.Color(236, 240, 241));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel2.setBackground(new java.awt.Color(255, 102, 102));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 610, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 30));
+
         txtFechaHora.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtFechaHora.setForeground(new java.awt.Color(51, 51, 51));
         txtFechaHora.setText("Fecha y Hora:");
         jPanel1.add(txtFechaHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
 
         txtSaludo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtSaludo.setForeground(new java.awt.Color(51, 51, 51));
         txtSaludo.setText("¡Hola, Usuario!");
-        jPanel1.add(txtSaludo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, -1, -1));
+        jPanel1.add(txtSaludo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, -1, -1));
 
         txtTransferenciaRealizada.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtTransferenciaRealizada.setForeground(new java.awt.Color(51, 51, 51));
         txtTransferenciaRealizada.setText("Transferencia Realizada con exito!");
         jPanel1.add(txtTransferenciaRealizada, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
 
@@ -82,33 +100,24 @@ public class ConfirmacionTransferencia extends javax.swing.JFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
 
         txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtCantidad.setForeground(new java.awt.Color(51, 51, 51));
         txtCantidad.setText("Cantidad:");
         jPanel1.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
 
         txtNumeroCuentaDestino.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtNumeroCuentaDestino.setForeground(new java.awt.Color(51, 51, 51));
         txtNumeroCuentaDestino.setText("Numero de cuenta:");
         jPanel1.add(txtNumeroCuentaDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, -1, -1));
 
         txtIDeTarjeta.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtIDeTarjeta.setForeground(new java.awt.Color(51, 51, 51));
         txtIDeTarjeta.setText("Tarjeta");
         jPanel1.add(txtIDeTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
         txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtTitulo.setForeground(new java.awt.Color(0, 0, 0));
         txtTitulo.setText("Banco");
-        jPanel1.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
+        jPanel1.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
         btnCrearTarjetas.setText("Volver");
         btnCrearTarjetas.addActionListener(new java.awt.event.ActionListener() {
