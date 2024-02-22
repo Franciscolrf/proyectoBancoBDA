@@ -229,7 +229,7 @@ public class PantallaInicial extends javax.swing.JFrame {
         RegistroCliente rc = new RegistroCliente((ClienteDAO) clienteDAO, conexion);
         rc.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnRegistrarseActionPerformed
+    }//GEN-LAST:event_btnRegistrarseActionPerformd
 
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
          if (txtUsuario.getText().equals("") || String.valueOf(pasContraseñaUsuario.getPassword()).equals("")) {
