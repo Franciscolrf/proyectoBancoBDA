@@ -134,14 +134,8 @@ public class SinCuentaDAO implements ISinCuentaDAO {
                 PreparedStatement comando = conexion.prepareStatement(
                         sentenciaSQL);) {
 
-            // Inicio stored procedure
-            CallableStatement callableStatement = conexion.prepareCall("{call ActualizarEstadoTransaccion(?,?)}");
-            callableStatement.setInt(1, folio);
-            callableStatement.setString(2, contrasena);
-            callableStatement.execute();
-            callableStatement.close();
-
-            // Fin storedProcedure
+            
+            
             comando.setInt(1, folio);
             comando.setString(2, contrasena);
             ResultSet resultado = comando.executeQuery();
@@ -154,6 +148,13 @@ public class SinCuentaDAO implements ISinCuentaDAO {
                 sinCuenta.setFolio(resultado.getInt("folio"));
                 sinCuenta.setEstado(resultado.getString("estado"));
             }
+            // Inicio stored procedure
+            CallableStatement callableStatement = conexion.prepareCall("{call ActualizarEstadoTransaccion(?,?)}");
+            callableStatement.setInt(1, folio);
+            callableStatement.setString(2, contrasena);
+            callableStatement.execute();
+            callableStatement.close();
+            // Fin storedProcedure
             return sinCuenta;
         } catch (SQLException ex) {
             logger.log(Level.INFO, "No se pudo obtener la cuenta", ex);
