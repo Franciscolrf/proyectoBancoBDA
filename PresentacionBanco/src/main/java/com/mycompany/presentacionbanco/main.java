@@ -10,10 +10,9 @@ import dao.IClienteDAO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
- * @author Laboratorios
+ * @author r
  */
 public class main {
 
