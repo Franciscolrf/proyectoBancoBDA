@@ -91,7 +91,6 @@ public class MontoRetiroSinTarjeta extends javax.swing.JFrame {
         );
 
         txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtTitulo.setForeground(new java.awt.Color(0, 0, 0));
         txtTitulo.setText("Monto del retiro sin tarjeta");
 
         txtSaludo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -112,6 +111,7 @@ public class MontoRetiroSinTarjeta extends javax.swing.JFrame {
         txtIngresaLaCantidad1.setForeground(new java.awt.Color(51, 51, 51));
         txtIngresaLaCantidad1.setText("Se le generara una contraseña y folio para realizar el retiro");
 
+        btnSalir.setBackground(new java.awt.Color(153, 153, 0));
         btnSalir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -120,6 +120,7 @@ public class MontoRetiroSinTarjeta extends javax.swing.JFrame {
             }
         });
 
+        btnAceptar.setBackground(new java.awt.Color(153, 153, 0));
         btnAceptar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {

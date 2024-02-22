@@ -100,7 +100,6 @@ public class RegistroCliente extends javax.swing.JFrame {
 
         txtTitulo.setBackground(new java.awt.Color(51, 51, 51));
         txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtTitulo.setForeground(new java.awt.Color(0, 0, 0));
         txtTitulo.setText("Datos Personales:");
 
         txtINombre.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -165,6 +164,7 @@ public class RegistroCliente extends javax.swing.JFrame {
 
         txfNumInterior.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        btnVolver.setBackground(new java.awt.Color(153, 153, 0));
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,6 +172,7 @@ public class RegistroCliente extends javax.swing.JFrame {
             }
         });
 
+        btnCrear.setBackground(new java.awt.Color(153, 153, 0));
         btnCrear.setText("Crear");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,7 +186,6 @@ public class RegistroCliente extends javax.swing.JFrame {
 
         txtTitulo1.setBackground(new java.awt.Color(51, 51, 51));
         txtTitulo1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtTitulo1.setForeground(new java.awt.Color(0, 0, 0));
         txtTitulo1.setText("Registro");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

@@ -99,7 +99,6 @@ public class Movimientos extends javax.swing.JFrame {
         txtIDeTarjeta.setText("Tarjetas");
 
         txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtTitulo.setForeground(new java.awt.Color(0, 0, 0));
         txtTitulo.setText("Movimientos");
 
         txtSaludo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -150,6 +149,7 @@ public class Movimientos extends javax.swing.JFrame {
             }
         });
 
+        btnBuscar.setBackground(new java.awt.Color(153, 153, 0));
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +157,7 @@ public class Movimientos extends javax.swing.JFrame {
             }
         });
 
+        btnVolver.setBackground(new java.awt.Color(153, 153, 0));
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

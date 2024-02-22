@@ -115,10 +115,10 @@ public class ConfirmacionTransferencia extends javax.swing.JFrame {
         jPanel1.add(txtIDeTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
         txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtTitulo.setForeground(new java.awt.Color(0, 0, 0));
         txtTitulo.setText("Banco");
         jPanel1.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
+        btnCrearTarjetas.setBackground(new java.awt.Color(153, 153, 0));
         btnCrearTarjetas.setText("Volver");
         btnCrearTarjetas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

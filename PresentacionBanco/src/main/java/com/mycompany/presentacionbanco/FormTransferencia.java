@@ -92,7 +92,6 @@ public class FormTransferencia extends javax.swing.JFrame {
         );
 
         txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtTitulo.setForeground(new java.awt.Color(0, 0, 0));
         txtTitulo.setText("Transferencia");
 
         txtIDeTarjeta.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -122,9 +121,9 @@ public class FormTransferencia extends javax.swing.JFrame {
         });
 
         txtSaludo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtSaludo.setForeground(new java.awt.Color(0, 0, 0));
         txtSaludo.setText("¡Hola, Usuario!");
 
+        btnVolver.setBackground(new java.awt.Color(153, 153, 0));
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +131,7 @@ public class FormTransferencia extends javax.swing.JFrame {
             }
         });
 
+        btnTransferirTarjetas.setBackground(new java.awt.Color(153, 153, 0));
         btnTransferirTarjetas.setText("Transferir");
         btnTransferirTarjetas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

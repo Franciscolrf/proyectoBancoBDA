@@ -164,7 +164,6 @@ public class FormRetiroSinCuenta extends javax.swing.JFrame {
         );
 
         txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtTitulo.setForeground(new java.awt.Color(0, 0, 0));
         txtTitulo.setText("Retirar sin cuenta");
 
         txtIntroduzcaLosDatos.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -193,6 +192,7 @@ public class FormRetiroSinCuenta extends javax.swing.JFrame {
             }
         });
 
+        btnVolver.setBackground(new java.awt.Color(153, 153, 0));
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,6 +200,7 @@ public class FormRetiroSinCuenta extends javax.swing.JFrame {
             }
         });
 
+        btnAceptar.setBackground(new java.awt.Color(153, 153, 0));
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

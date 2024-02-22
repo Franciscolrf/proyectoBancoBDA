@@ -53,8 +53,9 @@ public class Tarjeta extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        txtTitulo = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         txtSaldoModificar = new javax.swing.JLabel();
+        txtTitulo = new javax.swing.JLabel();
         txtSaludo = new javax.swing.JLabel();
         txtSaldo = new javax.swing.JLabel();
         txtIDeTarjeta = new javax.swing.JLabel();
@@ -83,14 +84,32 @@ public class Tarjeta extends javax.swing.JFrame {
             .addGap(0, 35, Short.MAX_VALUE)
         );
 
+        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
+
+        txtSaldoModificar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        txtSaldoModificar.setForeground(new java.awt.Color(0, 153, 51));
+        txtSaldoModificar.setText("$:");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(txtSaldoModificar)
+                .addContainerGap(167, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtSaldoModificar)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
         txtTitulo.setBackground(new java.awt.Color(51, 51, 51));
         txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtTitulo.setForeground(new java.awt.Color(0, 0, 0));
         txtTitulo.setText("Transferencia");
-
-        txtSaldoModificar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtSaldoModificar.setForeground(new java.awt.Color(102, 102, 102));
-        txtSaldoModificar.setText("$:");
 
         txtSaludo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txtSaludo.setForeground(new java.awt.Color(51, 51, 51));
@@ -104,6 +123,7 @@ public class Tarjeta extends javax.swing.JFrame {
         txtIDeTarjeta.setForeground(new java.awt.Color(51, 51, 51));
         txtIDeTarjeta.setText("Tarjeta");
 
+        btnTransferencia.setBackground(new java.awt.Color(153, 153, 0));
         btnTransferencia.setText("Transferencia");
         btnTransferencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,6 +131,7 @@ public class Tarjeta extends javax.swing.JFrame {
             }
         });
 
+        btnRetirar.setBackground(new java.awt.Color(153, 153, 0));
         btnRetirar.setText("Retirar");
         btnRetirar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +139,7 @@ public class Tarjeta extends javax.swing.JFrame {
             }
         });
 
+        btnMovimineto.setBackground(new java.awt.Color(153, 153, 0));
         btnMovimineto.setText("Movimientos");
         btnMovimineto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,6 +147,7 @@ public class Tarjeta extends javax.swing.JFrame {
             }
         });
 
+        btnCancelarCuenta.setBackground(new java.awt.Color(153, 153, 0));
         btnCancelarCuenta.setText("Cancelar Cuenta");
         btnCancelarCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +155,7 @@ public class Tarjeta extends javax.swing.JFrame {
             }
         });
 
+        btnSalir.setBackground(new java.awt.Color(153, 153, 0));
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +163,7 @@ public class Tarjeta extends javax.swing.JFrame {
             }
         });
 
+        btnRefrescar.setBackground(new java.awt.Color(153, 153, 0));
         btnRefrescar.setText("Refrescar");
         btnRefrescar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,21 +187,20 @@ public class Tarjeta extends javax.swing.JFrame {
                         .addGap(65, 65, 65)
                         .addComponent(btnCancelarCuenta)
                         .addGap(125, 125, 125)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtSaldoModificar)
-                                .addGap(78, 352, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnMovimineto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnTransferencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnRetirar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnRefrescar))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnMovimineto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnTransferencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRetirar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRefrescar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(69, 625, Short.MAX_VALUE)
                         .addComponent(btnSalir)))
                 .addGap(81, 81, 81))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(276, 276, 276)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(16, 16, 16)
@@ -196,9 +220,9 @@ public class Tarjeta extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTitulo)
                     .addComponent(txtSaludo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                .addComponent(txtSaldoModificar)
-                .addGap(127, 127, 127)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(122, 122, 122)
                 .addComponent(btnTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -289,6 +313,7 @@ public class Tarjeta extends javax.swing.JFrame {
     private javax.swing.JButton btnTransferencia;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel txtIDeTarjeta;
     private javax.swing.JLabel txtSaldo;
     private javax.swing.JLabel txtSaldoModificar;

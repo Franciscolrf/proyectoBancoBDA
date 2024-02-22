@@ -99,7 +99,6 @@ public class PantallaInicial extends javax.swing.JFrame {
         );
 
         txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        txtTitulo.setForeground(new java.awt.Color(0, 0, 0));
         txtTitulo.setText("Banco");
 
         txtIDdeUsuario.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
@@ -124,6 +123,7 @@ public class PantallaInicial extends javax.swing.JFrame {
             }
         });
 
+        btnRetiroSinCuenta.setBackground(new java.awt.Color(153, 153, 0));
         btnRetiroSinCuenta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnRetiroSinCuenta.setText("Retiro sin cuenta");
         btnRetiroSinCuenta.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +132,7 @@ public class PantallaInicial extends javax.swing.JFrame {
             }
         });
 
+        btnRegistrarse.setBackground(new java.awt.Color(153, 153, 0));
         btnRegistrarse.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnRegistrarse.setText("Registrarse");
         btnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
@@ -140,6 +141,7 @@ public class PantallaInicial extends javax.swing.JFrame {
             }
         });
 
+        btnAcceder.setBackground(new java.awt.Color(153, 153, 0));
         btnAcceder.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAcceder.setText("Acceder");
         btnAcceder.addActionListener(new java.awt.event.ActionListener() {

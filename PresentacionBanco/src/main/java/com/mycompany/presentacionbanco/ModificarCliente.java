@@ -147,7 +147,6 @@ public class ModificarCliente extends javax.swing.JFrame {
         jPanel12.setBackground(new java.awt.Color(240, 242, 242));
 
         txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtTitulo.setForeground(new java.awt.Color(0, 0, 0));
         txtTitulo.setText("Datos Personales:");
 
         jPanel11.setBackground(new java.awt.Color(255, 102, 102));
@@ -203,6 +202,7 @@ public class ModificarCliente extends javax.swing.JFrame {
 
         txfCalle.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        btnVolver.setBackground(new java.awt.Color(153, 153, 0));
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,6 +210,7 @@ public class ModificarCliente extends javax.swing.JFrame {
             }
         });
 
+        btnCrear.setBackground(new java.awt.Color(153, 153, 0));
         btnCrear.setText("Crear");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
